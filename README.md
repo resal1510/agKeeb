@@ -1,2 +1,2 @@
 # shop-project
-Projet de shop en ligne pour les cours EPSIC.
+Projet de shop en ligne pour les cours EPSIC
