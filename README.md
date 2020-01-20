@@ -1,2 +1,2 @@
-# shop-project
+# agKeeb shop project
 Projet de shop en ligne pour les cours EPSIC
