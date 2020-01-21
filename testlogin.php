@@ -44,6 +44,7 @@ if (isset($_SESSION["loggedin"])) {
 
   <?php
   require_once "admincheck.php";
+  print_r($isAdmin[0]->admin);
 
   if ($isLogged) {
     print_r("Addresse mail connectée : ". $connectedMail."<br>");
