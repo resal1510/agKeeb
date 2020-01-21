@@ -28,11 +28,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Vérifier les user et mdp
     if(empty($email_err) && empty($password_err)){
         // Préparation de la requête SQL
-        $sql = "SELECT id_login, email, password FROM login WHERE email = :email";
+        $sql = "SELECT id_client, mail, pwd FROM Clients WHERE mail = :mail";
         // A TESTER $sql = "SELECT id_client, mail, mot_de_passe FROM Clients WHERE mail = :email";
         if($stmt = $pdo->prepare($sql)){
             // Mise à bien des variables pour la requête
-            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+            $stmt->bindParam(":mail", $param_email, PDO::PARAM_STR);
             // Set les params
             $param_email = trim($_POST["email"]);
             // Exécution de la requête SQL
@@ -41,27 +41,47 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if($stmt->rowCount() == 1){
                     if($row = $stmt->fetch()){
                         $id = $row["id"];
-                        $email = $row["email"];
-                        $hashed_password = $row["password"];
+                        $email = $row["mail"];
+                        $hashed_password = $row["pwd"];
                         $salt_password = "i;151-120#";
                         $check_password = hash("sha256", $password . $salt_password);
                         if($check_password == $hashed_password){
-                            // Si le mdp est juste, créer la session
-                            session_start();
-                            // Stockage de la session
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
-                            $_SESSION["email"] = $email;
-                            // Et on redirige sur la page d'accueil
-                            header("location: index.php");
+                            // Si le mdp est juste, voir si le compte est désactivé
+                            $sql = "SELECT * FROM Clients WHERE mail LIKE :mailCheck";
+                            if ($stmt = $pdo->prepare($sql))
+                            {
+                                // Mise à bien des variables pour la requête
+                                $stmt->bindParam(":mailCheck", $param_email, PDO::PARAM_STR);
+                                // Exécution de la requête SQL
+                                if ($stmt->execute())
+                                {
+                                    $result1 = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                                    $a1 = json_encode($result1);
+                                    $a2 = json_decode($a1, true);
+
+                                    foreach ($a2 as $ok) {
+                                        if ($ok["actif"] == "false") {
+                                          header("location: disabled-account.php");
+                                        } else {
+                                          session_start();
+                                          // Stockage de la session
+                                          $_SESSION["loggedin"] = true;
+                                          $_SESSION["id"] = $id;
+                                          $_SESSION["email"] = $email;
+                                          // Et on redirige sur la page d'accueil
+                                          header("location: index.php");
+                                        }
+                                      }
+                                    }
+                                }
                         } else{
                             // Message d'erreur si le mdp est faux
-                            $password_err = "Login incorrect, merci de réessayer.";
+                            $password_err = "Login incorrect mdp, merci de réessayer.";
                         }
                     }
                 } else{
                     // Message d'erreur si le email est faux
-                    $email_err = "Login incorrect, merci de réessayer.";
+                    $email_err = "Login incorrect mail, merci de réessayer.";
                 }
             } else{
                 echo "Quelque chose s'est mal passé, merci de réessayer plus tard";
