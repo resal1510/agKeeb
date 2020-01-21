@@ -13,6 +13,9 @@ require_once "config.php";
 // Definir les variables et les clean
 $email = $password = $confirm_password = "";
 $email_err = $password_err = $confirm_password_err = "";
+$customerCreatedDefault = "'false'";
+$defaultAdresse = "'5'";
+$isActive = "'true'";
 
 // Traitement des données quand le formulaire est validé
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -22,12 +25,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $email_err = "Merci d'entrer .";
     } else{
         // Prepare a select statement
-        $sql = "SELECT id FROM users WHERE email = :email";
+        $sql = "SELECT id_client FROM Clients WHERE mail = :mail";
         // A TESTER $sql = "SELECT id_client FROM Clients WHERE mail = :email";
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
-            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+            $stmt->bindParam(":mail", $param_email, PDO::PARAM_STR);
 
             // Set parameters
             $param_email = trim($_POST["email"]);
@@ -71,18 +74,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($email_err) && empty($password_err) && empty($confirm_password_err)){
 
         // Prepare an insert statement
-        $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
+        $sql = "INSERT INTO Clients (mail, pwd, customerCreated, adresse_livraison, adresse_facturation, actif) VALUES (:mail, :pwd, $customerCreatedDefault, $defaultAdresse, $defaultAdresse, $isActive)";
         // A TESTER $sql = "INSERT INTO Clients (mail, mot_de_passe) VALUES (:email, :password)";
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
-            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
-            $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
+            $stmt->bindParam(":mail", $param_email, PDO::PARAM_STR);
+            $stmt->bindParam(":pwd", $param_password, PDO::PARAM_STR);
 
             // Set parameters
             $param_email = $email;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
-
+            $salt_password = "i;151-120#";
+            $param_password = hash("sha256", $password . $salt_password);
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Redirect to login page
