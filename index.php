@@ -39,17 +39,16 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   <div id="menuTop"></div>
 
   <div class="spacer"></div>
-  <span>Debug buttons :</span>
+  <p>Debug buttons (Login) :</p>
   <button onclick="window.location.href = 'https://agkeeb.allanresin.ch/index.php';">index</button>
   <button onclick="window.location.href = 'https://agkeeb.allanresin.ch/register.php';">register</button>
   <button onclick="window.location.href = 'https://agkeeb.allanresin.ch/login.php';">login</button>
   <button onclick="window.location.href = 'https://agkeeb.allanresin.ch/logout.php';">logout</button>
   <button onclick="window.location.href = 'https://agkeeb.allanresin.ch/testlogin.php';">check login</button>
   <div class="spacer"></div>
-  <span>Debug buttons 2 :</span>
-  <button onclick="window.location.href = 'https://agkeeb.allanresin.ch/enableitem.php';">Enable/disable product</button>
-  <button onclick="window.location.href = 'https://agkeeb.allanresin.ch/listitem.php';">View products status</button>
-  <button onclick="window.location.href = 'https://agkeeb.allanresin.ch/accountinfo.php';">View account infos</button>
+  <p>Debug buttons (Admin panel things) :</p>
+  <button onclick="window.location.href = 'https://agkeeb.allanresin.ch/manageitems.php';">Enable/disable/list items</button>
+  <button onclick="window.location.href = 'https://agkeeb.allanresin.ch/manageaccounts.php';">Enable/Disable/list accounts </button>
 </body>
 
 </html>
