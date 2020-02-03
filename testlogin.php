@@ -27,6 +27,7 @@ if (isset($_SESSION["loggedin"])) {
   <script src="/js/script.js" charset="utf-8"></script>
   <link rel="stylesheet" href="/css/style.css">
 </head>
+<?php include "header.php"?>
 <script>
   $( document ).ready(function() {
     console.log("Document ready");
