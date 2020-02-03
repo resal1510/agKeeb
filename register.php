@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
 // Initialiser la session
 session_start();
 // Check si le user est déjà connecté. Si oui, le rediriger vers index.php
@@ -12,13 +15,23 @@ require_once "config.php";
 
 // Definir les variables et les clean
 $email = $password = $confirm_password = "";
-$email_err = $password_err = $confirm_password_err = "";
+$email_err = $password_err = $confirm_password_err = $captcha_err = "";
 $customerCreatedDefault = "'false'";
 $defaultAdresse = "'5'";
 $isActive = "'true'";
 
 // Traitement des données quand le formulaire est validé
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+  if(empty(trim($_POST["captcha"]))){
+      $captcha_err = "Merci de remplir le captcha";
+  } else {
+    if ($_POST["captcha"] == $_SESSION['code']) {
+      $captcha_err = "";
+    } else {
+        $captcha_err = "Captcha incorrect";
+    }
+  }
 
     // Valider le email
     if(empty(trim($_POST["email"]))){
@@ -71,16 +84,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // Check input errors before inserting in database
-    if(empty($email_err) && empty($password_err) && empty($confirm_password_err)){
+    if(empty($email_err) && empty($password_err) && empty($confirm_password_err) && empty($captcha_err)){
 
         // Prepare an insert statement
-        $sql = "INSERT INTO Clients (mail, pwd, customerCreated, adresse_livraison, adresse_facturation, actif) VALUES (:mail, :pwd, $customerCreatedDefault, $defaultAdresse, $defaultAdresse, $isActive)";
+        $sql = "INSERT INTO Clients (mail, pwd, customerCreated, adresse_livraison, adresse_facturation, actif, derniere_ip) VALUES (:mail, :pwd, $customerCreatedDefault, $defaultAdresse, $defaultAdresse, $isActive, :lastip)";
         // A TESTER $sql = "INSERT INTO Clients (mail, mot_de_passe) VALUES (:email, :password)";
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":mail", $param_email, PDO::PARAM_STR);
             $stmt->bindParam(":pwd", $param_password, PDO::PARAM_STR);
+            $stmt->bindParam(":lastip", $_SERVER['REMOTE_ADDR'], PDO::PARAM_STR);
 
             // Set parameters
             $param_email = $email;
@@ -103,6 +117,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     unset($pdo);
 }
 ?>
+<html>
+<?php include "header.php"?>
 
 <head>
   <!-- Set charset, title -->
@@ -119,36 +135,42 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <script>
-  $( document ).ready(function() {
+  $(document).ready(function() {
     console.log("Document ready");
     $("#menuTop").load("menu.html");
-});
+  });
 </script>
+
 <body>
   <div id="menuTop"></div>
 
   <div class="">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
-            <label>email</label>
-            <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
-            <span class="help-block"><?php echo $email_err; ?></span>
-        </div>
-        <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-            <label>Password</label>
-            <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
-            <span class="help-block"><?php echo $password_err; ?></span>
-        </div>
-        <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-            <label>Confirm Password</label>
-            <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
-            <span class="help-block"><?php echo $confirm_password_err; ?></span>
-        </div>
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Submit">
-            <input type="reset" class="btn btn-default" value="Reset">
-        </div>
-        <p>Already have an account? <a href="login.php">Login here</a>.</p>
+      <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
+        <label>email</label>
+        <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
+        <span class="help-block"><?php echo $email_err; ?></span>
+      </div>
+      <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
+        <span class="help-block"><?php echo $password_err; ?></span>
+      </div>
+      <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+        <label>Confirm Password</label>
+        <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+        <span class="help-block"><?php echo $confirm_password_err; ?></span>
+      </div>
+      <div class="form-group <?php echo (!empty($captcha_err)) ? 'has-error' : ''; ?>">
+        <label for="captcha">Confirm Captcha (Seulement des majuscules et chiffres)</label><br>
+        <img src="captchabeta.php" /><input type="text" name="captcha" />
+        <span class="help-block"><?php echo $captcha_err; ?></span>
+      </div>
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Submit">
+        <input type="reset" class="btn btn-default" value="Reset">
+      </div>
+      <p>Already have an account? <a href="login.php">Login here</a>.</p>
     </form>
   </div>
 </body>
