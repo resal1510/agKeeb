@@ -226,6 +226,7 @@ $pdo->connection = null;
   <link rel="stylesheet" href="/css/style.css">
 </head>
   <body>
+    <?php include "header.php"?>
     <div class="">
       <h3>Accounts management</h3>
       <br>
