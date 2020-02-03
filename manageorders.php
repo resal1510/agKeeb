@@ -41,37 +41,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             {
               $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
               //$a = json_decode(json_encode($result), TRUE);
-
-              $nom = "nom";
-              $quantity = "quantité";
+              $nom = "nom_article";
+              $quantity = "quantite";
               $prix = "prix";
               $idCommande = "id_commande";
-              $nbre = 1;
-
-
-              foreach ($result as $ok) {
-                $finished = "false";
-
-                while ($finished == "false") {
-                  $ordernumber = $ok[$idCommande];
-
-                    if ($ordernumber == $nbre) {
-                      print_r("<br> Numéro commande : ".$ok[$idCommande]);
-                      print_r("<br> ok mec : ".$ok[$nom]);
-                      print_r("<br> ok mec : ".$ok[$quantity]);
-                      print_r("<br> ok mec : ".$ok[$prix]);
-                      $finished = "true";
-                      $nbre = 1;
-                    } else {
-                      $nbre++;
-
-                    }
+              $montant = "montant";
+              $lastID;
+              foreach ($result as $key) {
+                if ($lastID == $key[$idCommande]) {
+                  print_r("");
+                } else {
+                  print_r("<br> Numéro commande : ".$key[$idCommande]);
                 }
+                print_r("<br> Nom article : ".$key[$nom]);
+                print_r("<br> Quantité : ".$key[$quantity]);
+                print_r("<br> Prix unité : ".$key[$prix]);
+                print_r("<br>");
+                $lastID = $key[$idCommande];
               }
             }
         }
           break;
-
         default:
           print_r("default");
           break;
@@ -79,8 +69,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else {
       print_r("ID non trouvé");
     }
-
-
   }
 }
 ?>
@@ -97,10 +85,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <script src="https://kit.fontawesome.com/a77b3e076e.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <!-- Import local JS and CSS files -->
-  <script src="/js/script.js" charset="utf-8"></script>
-  <link rel="stylesheet" href="/css/style.css">
+  <script src="js/script.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <?php include "header.php"?>
   <div>
     <h3>List customer orders</h3>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
@@ -109,20 +98,73 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       <input type="text" name="dowhat" value="listOrders" hidden>
       <input type="submit" value="Submit">
       <?php echo (!empty($id_err)) ?>
-
-      <div class="listOrders">
-        <h4><?php print_r(!empty($actualOrder)); ?></h4>
-        <?php print_r("ok : ".!empty($ok[$nom])); ?>
-        <?php print_r(!empty($actualQty)); ?>
-        <?php print_r(!empty($actualPrice)); ?>
-      </div>
     </form>
   </div>
   <div class="spacer"></div>
   <div>
-    <h3>Manage an order</h3>
+    <h3>Delete an order</h3>
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+      <label for="customerID">For wich customer ?</label>
+      <input type="text" name="" value="">
+
+
+      <input type="text" name="dowhat" value="createOrder" hidden>
+      <input type="submit" value="Submit">
+      <?php echo (!empty($id_err)) ?>
+    </form>
+
+    <h3>List all orders</h3>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>ID Commande</td>
+          <td>Nom du client</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <?php
+        $sth = $pdo->prepare("SELECT * FROM Commandes INNER JOIN Contenu_commandes ON Commandes.id_commande = Contenu_commandes.commande INNER JOIN Articles ON Articles.id_article = Contenu_commandes.article");
+        $sth->execute();
+        $result3 = $sth->fetchAll(\PDO::FETCH_ASSOC);
+        print_r($result3);
+
+
+          foreach ($result3 as $ok) {
+          print_r("<tr>");
+          print_r("<td>".$ok[$id]."</td>");
+          print_r("<td>".$ok[$nom]."</td>");
+          print_r("<td>".$ok[$stock]."</td>");
+          print_r("<td>".$ok[$enabled]."</td>");
+          print_r("<td>".$ok[$description]."</td>");
+          print_r('<td><img src="uploads/'.$ok[$nom_image].'" width="100" height="100"></td>');
+          print_r("</tr>");
+        }
+
+
+        $lastID;
+        foreach ($result as $key) {
+          if ($lastID == $key[$idCommande]) {
+            print_r("<td></td>");
+          } else {
+            print_r("<td>".$key[$id]."</td>");
+          }
+          print_r("<tr>");
+          print_r("<td>".$key[$id]."</td>");
+          print_r("<td>".$key[$nom]."</td>");
+          print_r("<td>".$key[$stock]."</td>");
+          print_r("<td>".$key[$enabled]."</td>");
+          print_r("<td>".$key[$description]."</td>");
+          print_r("</tr>");
+          $lastID = $key[$idCommande];
+        }
+
+         ?>
+      </tbody>
+    </table>
 
   </div>
 </body>
-
 </html>
