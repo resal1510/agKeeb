@@ -17,7 +17,7 @@ session_destroy();
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <!-- Rediriger après Déconnexion vers index.php -->
-<meta http-equiv="refresh" content="2; URL=index.php">
+<meta http-equiv="refresh" content="1; URL=index.php">
 <body>
   <p>Vous allez être déconnecté.</p>
 </body>
