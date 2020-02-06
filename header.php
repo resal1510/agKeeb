@@ -40,5 +40,8 @@
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
         </div>
       </form>
+      <div class="" style="color:white;margin-left:50px;">
+        <i class="fas fa-shopping-cart"></i>
+      </div>
     </div>
   </nav>
