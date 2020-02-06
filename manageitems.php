@@ -269,7 +269,7 @@ $pdo->connection = null;
         ?>
       </select><br>
       <label for="itemPrice">Price : </label>
-      <input name="itemPrice" type="number"><br>
+      <input name="itemPrice" type="number" step="0.01"><br>
       <label for="itemsInStock">In stock : </label>
       <input name="itemsInStock" type="number"><br>
       <label for="itemDesc">Description : </label>
