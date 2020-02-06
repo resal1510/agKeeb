@@ -119,9 +119,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       <tbody>
         <tr>
           <td>ID Commande</td>
-          <td>Nom du client</td>
-          <td></td>
-          <td></td>
+          <td>Nom de l'article</td>
+          <td>Quantité</td>
+          <td>Prix unité</td>
           <td></td>
           <td></td>
         </tr>
@@ -129,33 +129,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $sth = $pdo->prepare("SELECT * FROM Commandes INNER JOIN Contenu_commandes ON Commandes.id_commande = Contenu_commandes.commande INNER JOIN Articles ON Articles.id_article = Contenu_commandes.article");
         $sth->execute();
         $result3 = $sth->fetchAll(\PDO::FETCH_ASSOC);
-        print_r($result3);
 
+        $idCommande = "id_commande";
+        $nomArticle = "nom_article";
+        $quantite = "quantite";
+        $prix = "prix";
 
-          foreach ($result3 as $ok) {
-          print_r("<tr>");
-          print_r("<td>".$ok[$id]."</td>");
-          print_r("<td>".$ok[$nom]."</td>");
-          print_r("<td>".$ok[$stock]."</td>");
-          print_r("<td>".$ok[$enabled]."</td>");
-          print_r("<td>".$ok[$description]."</td>");
-          print_r('<td><img src="uploads/'.$ok[$nom_image].'" width="100" height="100"></td>');
-          print_r("</tr>");
-        }
-
-
-        $lastID;
-        foreach ($result as $key) {
+        $lastID = "";
+        foreach ($result3 as $key) {
           if ($lastID == $key[$idCommande]) {
             print_r("<td></td>");
           } else {
+            print_r("<td>&nbsp;</td>");
             print_r("<td>".$key[$id]."</td>");
           }
           print_r("<tr>");
-          print_r("<td>".$key[$id]."</td>");
-          print_r("<td>".$key[$nom]."</td>");
-          print_r("<td>".$key[$stock]."</td>");
-          print_r("<td>".$key[$enabled]."</td>");
+          print_r("<td>".$key[$idCommande]."</td>");
+          print_r("<td>".$key[$nomArticle]."</td>");
+          print_r("<td>".$key[$quantite]."</td>");
+          print_r("<td>".$key[$prix]."</td>");
           print_r("<td>".$key[$description]."</td>");
           print_r("</tr>");
           $lastID = $key[$idCommande];
