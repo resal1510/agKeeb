@@ -40,6 +40,7 @@ ini_set('display_startup_errors', TRUE);
   <div class="spacer"></div>
   <p>Debug buttons (normal things) :</p>
   <button onclick="window.location.href = 'http://allanresin2.tk/agkeeb/createorder.php';">Create an order</button>
+  <button onclick="window.location.href = 'http://allanresin2.tk/agkeeb/panier.php';">Shopping cart</button>
 </body>
 
 </html>
