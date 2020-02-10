@@ -125,7 +125,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         if (empty($err_addItem)) {
           //If no error --> GOOOO
-          $sql = "INSERT INTO `Articles` (`categorie`, `nom_article`, `prix`, `stock`, `enabled`, `description`) VALUES (:categoryItem, :nameItem, :priceItem, :stockItem, :stateItem, :descItem)";
+          $sql = "INSERT INTO `Articles` (`categorie`, `nom_article`, `prix_unitaire`, `stock`, `enabled`, `description`) VALUES (:categoryItem, :nameItem, :priceItem, :stockItem, :stateItem, :descItem)";
           if ($stmt = $pdo->prepare($sql))
           {
               // Mise à bien des variables pour la requête
@@ -244,7 +244,7 @@ $pdo->connection = null;
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <?php include "header.php"?>
+  <?php include "navbarInclude.php"?>
   <h3>Add item</h3>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
       <label for="itemName">Name : </label>
