@@ -27,7 +27,7 @@ if (isset($_SESSION["loggedin"])) {
   <script src="/js/script.js" charset="utf-8"></script>
   <link rel="stylesheet" href="/css/style.css">
 </head>
-<?php include "header.php"?>
+  <?php include "navbarInclude.php"?>
 <script>
   $( document ).ready(function() {
     console.log("Document ready");
@@ -38,9 +38,6 @@ if (isset($_SESSION["loggedin"])) {
   <div id="menuTop"></div>
 
   <div class="spacer"></div>
-
-  <h1>Vous êtes connectés !</h1>
-  <h3>tcheu ce bg</h3>
   <div class="spacer"></div>
 
   <?php
