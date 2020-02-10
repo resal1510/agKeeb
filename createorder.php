@@ -27,7 +27,7 @@ require_once "config.php";
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <?php include "header.php"?>
+  <?php include "navbarInclude.php"?>
   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
     <?php
     $sth = $pdo->prepare("SELECT * FROM `Images` INNER JOIN Articles ON Images.article = Articles.id_article");
@@ -37,7 +37,7 @@ require_once "config.php";
     $nom = "nom_article";
     $id = "id_article";
     $enabled = "enabled";
-    $price = "prix";
+    $price = "prix_unitaire";
     $nom_image = "nom_image";
     $description = "description";
 
