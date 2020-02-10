@@ -1,7 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
-
 // Initialiser la session
 session_start();
 // Check si le user est déjà connecté. Si oui, le rediriger vers index.php
@@ -118,7 +115,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 <html>
-<?php include "header.php"?>
+  <?php include "navbarInclude.php"?>
 
 <head>
   <!-- Set charset, title -->

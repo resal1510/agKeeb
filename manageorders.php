@@ -89,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <?php include "header.php"?>
+  <?php include "navbarInclude.php"?>
   <div>
     <h3>List customer orders</h3>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
