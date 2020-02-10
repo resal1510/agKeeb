@@ -120,7 +120,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </script>
 
 <body>
-  <?php include "header.php"?>
+  <?php include "navbarInclude.php"?>
 
   <div id="menuTop"></div>
 
@@ -143,6 +143,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <input type="submit" class="btn btn-primary" value="Login">
       </div>
     </form>
+    Doesn't have an account ? <a href="register.php">Create yours here !</a>
   </div>
 </body>
 
