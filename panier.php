@@ -1,16 +1,33 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
  ?>
  <?php
- error_reporting(E_ALL);
- ini_set('display_errors', TRUE);
- ini_set('display_startup_errors', TRUE);
+
  ?>
-
  <!DOCTYPE html>
- <html lang="fr" dir="ltr">
-
- <body>
    <?php include "navbarInclude.php"?>
 
-   <div class="spacer"></div>
+
+
+
+<h3>Panier</h3>
+
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Articles</th>
+      <th scope="col"></th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Prix</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <?php
+
+     ?>
+  </tbody>
+</table>
