@@ -7,6 +7,35 @@ ini_set('display_startup_errors', TRUE);
 <?php
 require_once "config.php";
 
+//check if the get variable exists
+ if (isset($_GET['productID']))
+ {
+     addToCart($_GET['productID']);
+ }
+
+ function addToCart($item)
+ {
+     $arrayPanier = array();
+     array_push($arrayPanier, $item);
+     setcookie( "panier", serialize($arrayPanier));
+     header("Refresh:0; url=createorder.php");
+
+ }
+
+
+ if(isset($_COOKIE["panier"])){
+   $cookiePanier = $_COOKIE["panier"];
+   $cartContent = unserialize($cookiePanier);
+     var_dump($cartContent);
+     print_r("<br>");
+
+     foreach ($cartContent as $key) {
+       print_r($key);
+     }
+
+ } else{
+
+ }
 
 ?>
 
@@ -28,7 +57,7 @@ require_once "config.php";
 </head>
 <body>
   <?php include "navbarInclude.php"?>
-  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+
     <?php
     $sth = $pdo->prepare("SELECT * FROM `Images` INNER JOIN Articles ON Images.article = Articles.id_article");
     $sth->execute();
@@ -42,8 +71,9 @@ require_once "config.php";
     $description = "description";
 
     foreach ($result3 as $key) {
-      print_r('<div class="container">
-        <div class="product">
+      print_r('<form method="GET" action = "'.$_PHP_SELF.'">
+      <div class="container">
+        <div class="product" id="p'.$key[$id].'">
           <div class="img-container">
             <img src="uploads/'.$key[$nom_image].'">
           </div>
@@ -56,18 +86,19 @@ require_once "config.php";
                 <li>adipisicing elit dlanditiis quis ip.</li>
                 <li>lorem sde glanditiis dars fao.</li>
               </ul>
+              <input type="text" name="productID" value="'.$key[$id].'" hidden>
               <div class="buttons">
-                <a class="button add" href="#">Add to Cart</a>
+                <input type="submit" name="" value="Add to cart" class="button add">
                 <span class="button" id="price">'.$key[$price].' CHF</span>
               </div>
             </div>
           </div>
         </div>
-      </div>');
+          </form>');
     }
      ?>
 
 
-  </form>
+
 </body>
 </html>
