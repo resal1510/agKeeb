@@ -1,43 +1,41 @@
 <?php
-// Initialiser la session
+// Init the session
 session_start();
-// Check si le user est déjà connecté. Si oui, le rediriger vers index.php
+// CHeck if the user is already connected, if so, redirect him to index.php
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: index.php");
     exit;
 }
-// Inclure le fichier de config sql
+// Include sql config file
 require_once "config.php";
-// Définition des variables et les clean
+// Def all vars and clean them
 $email = $password = "";
 $email_err = $password_err = "";
-// Traitement des données une fois que le formulaire est validé
+// Data processing once the form is validated
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // Vérifier si le user est vide
+    // Verify if the user is empty
     if(empty(trim($_POST["email"]))){
         $email_err = "Merci d'entrer un nom d'utilisateur";
     } else{
         $email = trim($_POST["email"]);
     }
-    // Vérifier si le mdp est vide
+    // Verify of the password is empty
     if(empty(trim($_POST["password"]))){
         $password_err = "Merci d'entrer un mot de passe.";
     } else{
         $password = trim($_POST["password"]);
     }
-    // Vérifier les user et mdp
+    // Verify user and password if its correct
     if(empty($email_err) && empty($password_err)){
-        // Préparation de la requête SQL
+        // Prepare SQL statement
         $sql = "SELECT id_client, mail, pwd FROM Clients WHERE mail = :mail";
-        // A TESTER $sql = "SELECT id_client, mail, mot_de_passe FROM Clients WHERE mail = :email";
         if($stmt = $pdo->prepare($sql)){
-            // Mise à bien des variables pour la requête
+            // Set params
             $stmt->bindParam(":mail", $param_email, PDO::PARAM_STR);
-            // Set les params
             $param_email = trim($_POST["email"]);
-            // Exécution de la requête SQL
+            // Execute SQL query
             if($stmt->execute()){
-                // Check si le user et le mdp existent, si oui, check si le mdp est juste
+                // Check if the user exists, if yes, check if the password is OK
                 if($stmt->rowCount() == 1){
                     if($row = $stmt->fetch()){
                         $id = $row["id"];
@@ -46,51 +44,53 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $salt_password = "i;151-120#";
                         $check_password = hash("sha256", $password . $salt_password);
                         if($check_password == $hashed_password){
-                            // Si le mdp est juste, voir si le compte est désactivé
+                            // If the password is correct, then check if the account is disabled or not
                             $sql = "SELECT * FROM Clients WHERE mail LIKE :mailCheck";
                             if ($stmt = $pdo->prepare($sql))
                             {
-                                // Mise à bien des variables pour la requête
+                                //Set params
                                 $stmt->bindParam(":mailCheck", $param_email, PDO::PARAM_STR);
-                                // Exécution de la requête SQL
+                                // Execute SQL
                                 if ($stmt->execute())
                                 {
                                     $result1 = $stmt->fetchAll(\PDO::FETCH_ASSOC);
                                     $a1 = json_encode($result1);
                                     $a2 = json_decode($a1, true);
-
+                                    //Check if the account is enabled or not
                                     foreach ($a2 as $ok) {
                                         if ($ok["actif"] == "false") {
-                                          header("location: disabled-account.php");
+                                          //If yes, redirect the user into disabled account page
+                                          header("location: disabledAccount.php");
                                         } else {
+                                          //If the user is enables, start the session
                                           session_start();
-                                          // Stockage de la session
+                                          // Set session
                                           $_SESSION["loggedin"] = true;
                                           $_SESSION["id"] = $id;
                                           $_SESSION["email"] = $email;
-                                          // Et on redirige sur la page d'accueil
+                                          // Redirect to index page
                                           header("location: index.php");
                                         }
                                       }
                                     }
                                 }
                         } else{
-                            // Message d'erreur si le mdp est faux
+                            // Error if the password is wrong
                             $password_err = "Login incorrect mdp, merci de réessayer.";
                         }
                     }
                 } else{
-                    // Message d'erreur si le email est faux
+                    // Error if the mail address is wrong
                     $email_err = "Login incorrect mail, merci de réessayer.";
                 }
             } else{
                 echo "Quelque chose s'est mal passé, merci de réessayer plus tard";
             }
         }
-        // finir la requête
+        // finish sql
         unset($stmt);
     }
-    // Fermer la connection à la bdd
+    // close PDO connection
     unset($pdo);
 }
 ?>
@@ -112,18 +112,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <script src="/js/script.js" charset="utf-8"></script>
   <link rel="stylesheet" href="/css/style.css">
 </head>
-<script>
-  $(document).ready(function() {
-    console.log("Document ready");
-    $("#menuTop").load("menu.html");
-  });
-</script>
 
 <body>
   <?php include "navbarInclude.php"?>
-
-  <div id="menuTop"></div>
-
   <div class="spacer"></div>
   <div class="wrapper">
     <h2>Login</h2>

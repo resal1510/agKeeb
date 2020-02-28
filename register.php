@@ -1,23 +1,23 @@
 <?php
-// Initialiser la session
+// Init session
 session_start();
-// Check si le user est déjà connecté. Si oui, le rediriger vers index.php
+// Check if user is already logged, if yes, redirect him to index.php
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     header("location: index.php");
     exit;
 }
 
-// Inclure le fichier de config
+// include config file
 require_once "config.php";
 
-// Definir les variables et les clean
+// Set and clean variables
 $email = $password = $confirm_password = "";
 $email_err = $password_err = $confirm_password_err = $captcha_err = "";
 $customerCreatedDefault = "'false'";
 $defaultAdresse = "'5'";
 $isActive = "'true'";
 
-// Traitement des données quand le formulaire est validé
+// Data processing when the form is validated
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   if(empty(trim($_POST["captcha"]))){
@@ -30,14 +30,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
   }
 
-    // Valider le email
+    // Validate mail address
     if(empty(trim($_POST["email"]))){
         $email_err = "Merci d'entrer .";
     } else{
         // Prepare a select statement
         $sql = "SELECT id_client FROM Clients WHERE mail = :mail";
-        // A TESTER $sql = "SELECT id_client FROM Clients WHERE mail = :email";
-
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":mail", $param_email, PDO::PARAM_STR);
@@ -85,7 +83,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // Prepare an insert statement
         $sql = "INSERT INTO Clients (mail, pwd, customerCreated, adresse_livraison, adresse_facturation, actif, derniere_ip) VALUES (:mail, :pwd, $customerCreatedDefault, $defaultAdresse, $defaultAdresse, $isActive, :lastip)";
-        // A TESTER $sql = "INSERT INTO Clients (mail, mot_de_passe) VALUES (:email, :password)";
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -160,7 +157,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       </div>
       <div class="form-group <?php echo (!empty($captcha_err)) ? 'has-error' : ''; ?>">
         <label for="captcha">Confirm Captcha (Seulement des majuscules et chiffres)</label><br>
-        <img src="captchabeta.php" /><input type="text" name="captcha" />
+        <img src="captchaGenerator.php" /><input type="text" name="captcha" />
         <span class="help-block"><?php echo $captcha_err; ?></span>
       </div>
       <div class="form-group">

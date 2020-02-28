@@ -41,7 +41,7 @@ if (isset($_SESSION["loggedin"])) {
   <div class="spacer"></div>
 
   <?php
-  require_once "admincheck.php";
+  require_once "checkIfAdmin.php";
   print_r($isAdmin[0]->admin);
 
   if ($isLogged) {

@@ -1,11 +1,11 @@
 <?php
-// Initialiser la session
+// Init session
 session_start();
 
-// Reset les variables de la session
+// Reset session variables
 $_SESSION = array();
 
-// Casser la session
+// Break the connection
 session_destroy();
 ?>
 <head>
@@ -16,7 +16,7 @@ session_destroy();
   <script src="https://kit.fontawesome.com/a77b3e076e.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
-<!-- Rediriger après Déconnexion vers index.php -->
+<!-- Redirect after the logout to index.php -->
 <meta http-equiv="refresh" content="1; URL=index.php">
 <body>
   <p>Vous allez être déconnecté.</p>

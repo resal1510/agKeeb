@@ -1,4 +1,4 @@
-.navigation-clean-search {
+/.navigation-clean-search {
   background: #fff;
   padding-top: .75rem;
   padding-bottom: .75rem;
@@ -108,4 +108,3 @@
 .navigation-clean-search .form-inline .search-field:focus {
   border-bottom: 1px solid #ccc;
 }
-
