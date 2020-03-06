@@ -235,6 +235,7 @@ $pdo->connection = null;
 </head>
 <body>
   <?php include "navbarInclude.php"?>
+  <div class="spacer" style="margin-top: 72px"></div>
   <h3>Add item</h3>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
       <label for="itemName">Name : </label>

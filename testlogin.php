@@ -28,6 +28,7 @@ if (isset($_SESSION["loggedin"])) {
   <link rel="stylesheet" href="/css/style.css">
 </head>
   <?php include "navbarInclude.php"?>
+  <div class="spacer" style="margin-top: 72px"></div>
 <script>
   $( document ).ready(function() {
     console.log("Document ready");

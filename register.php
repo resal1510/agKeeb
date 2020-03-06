@@ -113,7 +113,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 <html>
   <?php include "navbarInclude.php"?>
-
+  <div class="spacer" style="margin-top: 72px"></div>
 <head>
   <!-- Set charset, title -->
   <meta charset="utf-8">

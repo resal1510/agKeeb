@@ -227,7 +227,7 @@ $pdo->connection = null;
 </head>
   <body>
   <?php include "navbarInclude.php"?>
-    <div class="">
+  <div class="spacer" style="margin-top: 72px"></div>
       <h3>Accounts management</h3>
       <br>
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
@@ -240,8 +240,6 @@ $pdo->connection = null;
         <input type="submit" name="doWhat" value="Delete">
         <?php echo (!empty($id_err)) ?>
       </form>
-
-    </div>
     <div class="spacer"></div>
     <div class="">
       <h5>Accounts list :</h5>
