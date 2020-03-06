@@ -2,3 +2,4 @@
 .htaccess
 .htpasswd
 *.md
+uploads/Thumbs.db
