@@ -17,11 +17,8 @@ function numberIncrease() {
   ++$n;
 }
 // include config file
-require_once "config.php";
-$sth = $pdo->prepare("SELECT * FROM `Images` INNER JOIN Articles ON Images.article = Articles.id_article");
-$sth->execute();
-$resultbeta = $sth->fetchAll(\PDO::FETCH_ASSOC);
-$keys = array_keys($saved_cart_items);
+include "config.php";
+include "/var/www/allanresin2.tk/html/agkeeb/mvc/model/shoppingCartListSQL.php";
 //Take all ID's of products in the cart
 if (count($saved_cart_items) > 0) {
   for($i = 0; $i < count($saved_cart_items); $i++) {
