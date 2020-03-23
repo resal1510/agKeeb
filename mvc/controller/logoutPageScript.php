@@ -2,13 +2,7 @@
 // Init session
 session_start();
 
-$actualId = $_SESSION["idClient"];
-
-require_once "config.php";
-$sql = "UPDATE Clients SET remember_cookie = '' WHERE Clients.id_client LIKE :id";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(":id", $actualId, PDO::PARAM_STR);
-$stmt->execute();
+include "/var/www/allanresin2.tk/html/agkeeb/mvc/model/logoutSQL.php";
 
 //Delete remember-me cookie and DB row
 unset($_COOKIE['keeplogin']);
