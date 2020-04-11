@@ -152,7 +152,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // name of the uploaded file
     $filename = $_FILES['itemImage']['name'];
     // destination of the file on the server
-    $destination = 'uploads/' . $filename;
+    $destination = '../uploads/' . $filename;
     // get the file extension
     $extension = pathinfo($filename, PATHINFO_EXTENSION);
     // the physical file on a temporary uploads directory on the server
@@ -234,7 +234,6 @@ $pdo->connection = null;
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <?php include "navbarInclude.php"?>
   <div class="spacer" style="margin-top: 72px"></div>
   <h3>Add item</h3>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
@@ -244,12 +243,11 @@ $pdo->connection = null;
       <select id="itemCategoryList" name="itemCategory">
         <option value="nothing" class="boldOption">Choose category ...</option>
         <?php
-        require_once "config.php";
         $pdo->exec('SET NAMES utf8');
-        $sth = $pdo->prepare("SELECT * FROM Categories");
+        $sth = $pdo->prepare("SELECT * FROM Categories_articles");
         $sth->execute();
         $result = $sth->fetchAll(\PDO::FETCH_ASSOC);
-        $categorie = "categorie";
+        $categorie = "categorie_article";
         $valueNumber = 1;
         foreach ($result as $data) {
          print_r('<option value = "'.$valueNumber.'">'.$data[$categorie].'</option>');
@@ -264,7 +262,7 @@ $pdo->connection = null;
       <label for="itemsInStock">In stock : </label>
       <input name="itemsInStock" type="number"><br>
       <label for="itemDesc">Description : </label>
-      <input name="itemDesc" type="text"><br>
+      <textarea name="itemDesc" type="text" rows="6" cols="40"></textarea><br>
       <label for="itemEnabled">Item state : </label>
       <input name="itemEnabled" type="radio" value="true" checked="checked">Enabled
       <input name="itemEnabled" type="radio" value="false">Disabled<br>
@@ -314,7 +312,6 @@ $pdo->connection = null;
     $description = "description";
 
       //Import PDO config
-      require_once "config.php";
       //SQL query to select all articles
       $sth = $pdo->prepare("SELECT * FROM Articles");
       $sth->execute();
