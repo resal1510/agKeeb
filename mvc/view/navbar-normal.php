@@ -1,5 +1,5 @@
 <body>
-  <div class="spacer" style="margin-bottom: 79px"></div>
+  <div class="spacer" style="margin-bottom:72px"></div>
   <nav class="navbar navbar-light navbar-expand-lg text-muted shadow-sm navigation-clean-search fixed-top" style="background-color: #FFFFFF;padding-left: 100px;padding-right: 100px;">
     <div class="container-fluid"><a class="navbar-brand text-black-50" href="index.php" style="margin-left: 0px;">agKeeb</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" style="margin-right: 0px;"><span
           class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -17,7 +17,7 @@
           <div class="form-group" style="padding-left: 21px;"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" id="search-field" name="search"></div>
         </form>
         <span class="navbar-text"><a class="login" href="shoppingCart.php" style="padding: 0px;width: 0px;margin: 27px;"><i class="fas fa-shopping-cart" style="margin-right:10px;"></i>Panier</a></span>
-        <a class="btn btn-light text-nowrap action-button" role="button" href="login.php" style="background-color: #71c3ff;margin-right: 0px;padding-right: 20px;">Se connecter</a>
+        <?php include "mvc/controller/navbarNScript.php" ?>
       </div>
     </div>
   </nav>

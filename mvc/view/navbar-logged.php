@@ -1,5 +1,5 @@
 <body>
-  <div class="spacer" style="margin-bottom: 79px"></div>
+  <div class="spacer" style="margin-bottom: 72px"></div>
   <nav class="navbar navbar-light navbar-expand-lg text-muted shadow-sm navigation-clean-search fixed-top" style="background-color: #FFFFFF;padding-left: 100px;padding-right: 100px;">
     <div class="container-fluid"><a class="navbar-brand text-black-50" href="index.php" style="margin-left: 0px;">agKeeb</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" style="margin-right: 0px;"><span
           class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
@@ -22,7 +22,7 @@
               <a class="dropdown-item" role="presentation" href="#"><i class="fas fa-shopping-bag" style="margin-right:10px;"></i>Commandes</a>
               <a class="dropdown-item" role="presentation" href="#"><i class="fas fa-users-cog" style="margin-right:10px;"></i>Paramètres</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" role="presentation" href="logout.php"><i class="fas fa-sign-out-alt" style="margin-right:10px;"></i>Déconnexion</a>
+              <?php include "mvc/controller/navbarLScript.php" ?>
             </div>
           </li>
         </ul>

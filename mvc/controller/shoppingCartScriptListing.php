@@ -42,7 +42,7 @@ if (count($saved_cart_items) > 0) {
                       <div class="col-md-3">
                           <div class="product-image"><img class="img-fluid d-block mx-auto" style="height:120px" src="uploads/'.$imgDbTmp.'"></div>
                       </div>
-                      <div class="col-md-5 col-lg-4 product-info align-top"><a class="product-name" href="#">'.$nameDbTmp.'</a>
+                      <div class="col-md-5 col-lg-4 product-info align-top"><a class="product-name" href="productPage.php?id_product='.$idDbTmp.'">'.$nameDbTmp.'</a>
                       <div class="product-specs mt-1">
                           <div><span>Couleur:&nbsp;</span><span class="value">RGB</span>
                           </div>
