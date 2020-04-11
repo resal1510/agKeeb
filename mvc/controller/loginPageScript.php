@@ -5,16 +5,9 @@ include "config.php";
 include "checkRememberMe.php";
 //Clean variables in case of
 $email = $password = $idClientLogin = $email_err = $password_err = "";
-//Detect last page with the GET
-$lastPage;
-if (isset($_GET['lpage'])) {
-  $lastPage = $_GET['lpage'];
-} else {
-  $lastPage = 'index.php';
-}
 // CHeck if the user is already connected, if so, redirect him to index.php
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header('location: '.$lastPage.'');
+    header("location: index.php");
     exit;
 }
 //If some data is received via POST to this page :
@@ -28,12 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password_err = "Merci d'entrer un mot de passe.";
     } else {
         $password = trim($_POST["password"]);
-    }
-    //Check the last page
-    if (empty(trim($_POST["lastPage"]))) {
-        $lastPage = "index.php";
-    } else {
-        $lastPage = $_POST["lastPage"];
     }
     //Check if there is no actual error displayed before continue
     if (empty($email_err) && empty($password_err)) {
@@ -78,12 +65,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             //Update the database. Include SQL for this update
                             include "/var/www/allanresin2.tk/html/agkeeb/mvc/model/loginRememberSQL.php";
                         }
-                        //Then, when everything is OK, redirect to last page
-                        header('location: '.$lastPage.'');
+                        //Then, when everything is OK, redirect to index.php
+                        header("location: index.php");
                     }}}}
     } else {
         // Error if the password is wrong
-        $password_err = "Login incorrect, merci de réessayer.";
+        $password_err = "Login incorrect mdp, merci de réessayer.";
     }}
 //Close PDO and exit all remaining SQL queries.
 unset($stmt);

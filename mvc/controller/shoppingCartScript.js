@@ -1,4 +1,4 @@
-var tempInt;
+ var tempInt;
 var numberProduct;
 var arrayPrice = [];
 //Update prices in real time while modifying the number of items
@@ -13,8 +13,7 @@ $(document).ready(function(){
 
     var actualPrice = $(productPrice).val();
     var numberProduct = $(this).val();
-    var newPrice = parseFloat(actualPrice) * parseFloat(numberProduct);
-    newPrice = (Math.round(newPrice * 100) / 100).toFixed(2);
+    var newPrice = actualPrice * numberProduct;
 
     //Dont let user write something below 1
     if (numberProduct >= 1) {
@@ -31,19 +30,18 @@ $(document).ready(function(){
     //Can only write 0-9 characters. no letters or special characters
     var inputs = $(".priceProducts");
     for(var i = 0; i < inputs.length; i++){
-        var tmpPrice = $(inputs[i]).text();
-        tmpPrice = (Math.round(tmpPrice * 100) / 100).toFixed(2);
-        arrayPrice.push(tmpPrice);
+        var tmpPrice = $(inputs[i]).text().replace(/[^0-9]/gi, '');
+        arrayPrice.push(parseInt(tmpPrice));
     }
 
     //Add all items that is in the shopping cart
     var sumTotal = arrayPrice.reduce(function(a, b){
-        return parseFloat(a) + parseFloat(b);
+        return a + b;
     }, 0);
 
     //Set totals for shopping cart page
-    $("#subtotal").text(parseFloat(sumTotal));
-    $("#totaloftotal").text(parseFloat(sumTotal) + 8);
+    $("#subtotal").text(sumTotal);
+    $("#totaloftotal").text(sumTotal + 8);
 
     //Update in real time the cart
     var realId = $(productId).val()
@@ -59,16 +57,15 @@ $(document).ready(function(){
 
   var inputs = $(".priceProducts");
   for(var i = 0; i < inputs.length; i++){
-      var tmpPrice = $(inputs[i]).text();
-      tmpPrice = (Math.round(tmpPrice * 100) / 100).toFixed(2);
-      arrayPrice.push(tmpPrice);
+      var tmpPrice = $(inputs[i]).text().replace(/[^0-9]/gi, '');
+      arrayPrice.push(parseInt(tmpPrice));
   }
 
   var sumTotal = arrayPrice.reduce(function(a, b){
-      return parseFloat(a) + parseFloat(b);
+      return a + b;
   }, 0);
 
-  $("#subtotal").text(parseFloat(sumTotal));
+  $("#subtotal").text(sumTotal);
   $("#totaloftotal").text(sumTotal + 8);
 });
 
@@ -88,10 +85,5 @@ $(document).ready(function(){
           }
       });
     }
-  });
-
-  $("#goPayment").on("click", function(){
-    // Redirect to "payment" page w/ url
-    window.location.href = "payment.php";
   });
 });

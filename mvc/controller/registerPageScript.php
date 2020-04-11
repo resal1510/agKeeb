@@ -1,6 +1,7 @@
 <?php
 // Init session and include config
 session_start();
+require_once "config.php";
 // Set and clean variables
 $email = $password = $confirm_password = $email_err = $password_err = $confirm_password_err = $captcha_err = $remember_cookie ="";
 $customerCreatedDefault = 'false';
@@ -52,11 +53,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Check input errors before inserting in database
   if (empty($email_err) && empty($password_err) && empty($confirm_password_err) && empty($captcha_err)) {
     // Create the user with parameters. Include needed SQL
-    include "/var/www/allanresin2.tk/html/agkeeb/mvc/model/registerCreateSQL.php";
+    include "/var/www/allanresin2.tk/html/agkeeb/mvc/model/registerCheckMailSQL.php";
     // Redirect to login page
     header("location: login.php");
   }}
   // Close statement and connection
-  //unset($stmt);
-  //unset($pdo);
+  unset($stmt);
+  unset($pdo);
 ?>
