@@ -13,6 +13,8 @@ try{
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(PDOException $e){
   //Display the error when there is an error (lol)
+  echo 'Exception -> ';
+  var_dump($e->getMessage());
     die("ERROR: Could not connect. " . $e->getMessage());
 }
 ?>
