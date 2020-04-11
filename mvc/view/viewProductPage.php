@@ -5,8 +5,8 @@
       <div class="block-content">
         <div class="product-info">
           <div class="row">
-            <div class="col-md-6">
-              <?php echo '<img src="uploads/'.$pImage.'" alt="" style="width: 500px; height: 540px">'; ?>
+            <div class="col-md-6" style="text-align:center">
+              <?php echo '<img src="uploads/'.$pImage.'" alt="" style="width: 360px; height: 360px">'; ?>
             </div>
             <div class="col-md-6">
               <div class="info">
@@ -15,12 +15,12 @@
                   <?php include "mvc/controller/productPageScriptStars.php" ?>
                 </div>
                 <h3 style="margin-top: 20px;margin-bottom: 20px;">CHF <?php echo $pPrice ?></h3>
-                <div style="height: 44px;margin-bottom: 20px;"><select class="custom-select" style="height: 44px;margin-bottom: 20px;width: 150px;">
+                <!-- <div style="height: 44px;margin-bottom: 20px;"><select class="custom-select" style="height: 44px;margin-bottom: 20px;width: 150px;">
                     <option value="couleur" selected="" disabled="" hidden="">Couleur</option>
                     <option value="rouges">Rouges</option>
                     <option value="bleus">Bleus</option>
                     <option value="noirs">Noirs</option>
-                  </select></div>
+                  </select></div> -->
                 <form class='add-to-cart-form' method="get" action="javascript:submitToCart();">
                   <?php include "mvc/controller/productPageScriptDispoCart.php" ?>
                 </form>
