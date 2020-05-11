@@ -2,6 +2,11 @@
   <section class="clean-block clean-product dark">
     <div class="container">
       <?php include "mvc/controller/catalogPageScriptCartmsg.php" ?>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="catalog.php"><span>Catalogue</span></a></li>
+        <li class="breadcrumb-item"><a href="sex"><span>sex</span></a></li>
+        <li class="breadcrumb-item"><a href="#"><span><?php echo $pName ?></span></a></li>
+      </ol>
       <div class="block-content">
         <div class="product-info">
           <div class="row">

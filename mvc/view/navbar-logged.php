@@ -14,13 +14,13 @@
           </li>
         </ul>
         <form class="form-inline mr-auto" target="_self">
-          <div class="form-group" style="padding-left: 21px;"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" type="search" id="search-field" name="search"></div>
-        </form><span class="navbar-text"> <a class="login" href="shoppingCart.php" style="padding: 0px;width: 0px;margin: 27px;"><i class="fas fa-shopping-cart" style="margin-right:10px;"></i>Panier</a></span>
+          <div class="form-group" style="padding-left: 21px;"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" id="search-field" type="search" name="search"></div>
+        </form><span class="navbar-text"> <a href="shoppingCart.php" style="padding: 0px;width: 0px;margin: 27px;"><i class="fas fa-shopping-cart" style="margin-right:10px;" color="#000000"></i>Panier</a></span>
         <ul class="nav navbar-nav">
           <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="margin: 0px;padding: 8px;">Mon compte</a>
             <div class="dropdown-menu" role="menu">
-              <a class="dropdown-item" role="presentation" href="#"><i class="fas fa-shopping-bag" style="margin-right:10px;"></i>Commandes</a>
-              <a class="dropdown-item" role="presentation" href="#"><i class="fas fa-users-cog" style="margin-right:10px;"></i>Paramètres</a>
+              <a class="dropdown-item" role="presentation" href="orders.php"><i class="fas fa-shopping-bag" style="margin-right:10px;"></i>Commandes</a>
+              <a class="dropdown-item" role="presentation" href="userSettings.php"><i class="fas fa-users-cog" style="margin-right:10px;"></i>Paramètres</a>
               <div class="dropdown-divider"></div>
               <?php include "mvc/controller/navbarLScript.php" ?>
             </div>

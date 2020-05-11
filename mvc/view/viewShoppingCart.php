@@ -1,6 +1,9 @@
 <main class="page shopping-cart-page">
   <section class="clean-block clean-cart dark">
     <div class="container">
+      <div class="block-heading">
+          <h2 class="text-info">Panier</h2>
+      </div>
       <div class="content">
         <div class="row no-gutters">
           <div class="col-md-12 col-lg-8">
