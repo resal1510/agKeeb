@@ -1,3 +1,14 @@
+/* USER SETTINGS VIEW PAGE */
+.shipLink {
+  color: #007bff !important;
+  cursor: pointer;
+}
+
+.shipLink:hover {
+  color: #0056b3 !important;
+  text-decoration: underline;
+}
+
 /* REGISTER VIEW PAGE */
 #captchaStyle {
   margin-bottom: 10px;
