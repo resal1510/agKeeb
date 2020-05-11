@@ -82,10 +82,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->bindParam(":shipAddr", $shipAddress, PDO::PARAM_STR);
   $stmt->bindParam(":payAddr", $payAddress, PDO::PARAM_STR);
   if ($stmt->execute()) {
-    //
-    // TODO: Delete the Shopping cart cookie because the order is created
-    //
+
+    //Delete all cart items when the order is placed
+    include 'modifyCart.php';
+    for($i = 0; $i < count($saved_cart_items); $i++) {
+        $idCartTmp = $keys[$i];
+        delete($idCartTmp);
+      }
     //Return if the insert was OK or not, to know if we must redirect the user or not
+    $_SESSION["lastOrder"] = $idCreatedOrder;
     echo $idCreatedOrder;
   } else {
     echo 0;

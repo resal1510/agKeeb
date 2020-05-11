@@ -7,7 +7,9 @@ foreach ($rListCatalog as $key) {
           <div class="image"><a href="productPage.php?id_product='.$key[$id].'"><img class="img-fluid d-block mx-auto" style="height:160px" src="uploads/'.$key[$nom_image].'"></a></div>
           <div class="product-name"><a href="productPage.php?id_product='.$key[$id].'">'.$key[$nom].'</a></div>
           <div class="about">
-              <div class="rating"><img src="img/star.svg"><img src="img/star.svg"><img src="img/star.svg"><img src="img/star-half-empty.svg"><img src="img/star-empty.svg"></div>
+              <div class="rating">
+              <?php include "mvc/controller/productPageScriptStars.php" ?>
+              </div>
               <div class="price">
                   <h3>CHF '.$key[$price].'</h3>
               </div>

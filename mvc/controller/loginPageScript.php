@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 foreach ($a2 as $ok) {
                     $idClientLogin = $ok["id_client"];
                     //If the account is disabled
-                    if ($ok["actif"] == "false") {
+                    if ($ok["active"] == "false") {
                         //Redirect to the page "disabledAccount"
                         header("location: mvc/view/disabledAccount.php");
                     } else {

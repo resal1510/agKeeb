@@ -20,6 +20,7 @@ function numberIncrease() {
 include "config.php";
 include "/var/www/allanresin2.tk/html/agkeeb/mvc/model/shoppingCartListSQL.php";
 //Take all ID's of products in the cart
+
 if (count($saved_cart_items) > 0) {
   for($i = 0; $i < count($saved_cart_items); $i++) {
       $idCartTmp = $keys[$i];
@@ -40,14 +41,9 @@ if (count($saved_cart_items) > 0) {
               echo '<div class="product">
                   <div class="row justify-content-center align-items-center">
                       <div class="col-md-3">
-                          <div class="product-image"><img class="img-fluid d-block mx-auto" style="height:120px" src="uploads/'.$imgDbTmp.'"></div>
+                          <div class="product-image"><img class="img-fluid d-block mx-auto" style="height:120px width:120px" src="uploads/'.$imgDbTmp.'"></div>
                       </div>
-                      <div class="col-md-5 col-lg-4 product-info align-top"><a class="product-name" href="productPage.php?id_product='.$idDbTmp.'">'.$nameDbTmp.'</a>
-                      <div class="product-specs mt-1">
-                          <div><span>Couleur:&nbsp;</span><span class="value">RGB</span>
-                          </div>
-                      </div>
-                      </div>
+                      <div class="col-md-5 col-lg-4 product-info align-top"><a class="product-name" href="productPage.php?id_product='.$idDbTmp.'">'.$nameDbTmp.'</a></div>
                       <input type="text" id="ProductPrice'.$incrNumber.'" value="'.$priceDbTmp.'" hidden>
                       <input type="text" id="ProductID'.$incrNumber.'" value="'.$idDbTmp.'" hidden>
                       <div class="col-6 col-md-2 quantity"><label class="d-none d-md-block" for="quantity">Quantité</label><input type="number" id="quantity'.$incrNumber.'" class="form-control quantity-input" value="'.$qtyCartTmp.'" max="99" /></div>
