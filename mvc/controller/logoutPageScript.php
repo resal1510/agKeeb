@@ -20,5 +20,9 @@ if (isset($_GET['lpage'])) {
 }
 
 //Redirect to last page or index if it was not working
-echo '<meta http-equiv="refresh" content="1; URL='.$lastPage.'">';
+if ($lastPage == "agkeeb") {
+  echo '<meta http-equiv="refresh" content="1; URL=index.php">';
+} else {
+  echo '<meta http-equiv="refresh" content="1; URL='.$lastPage.'">';
+}
 ?>

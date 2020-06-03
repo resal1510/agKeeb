@@ -79,7 +79,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             include "/var/www/allanresin2.tk/html/agkeeb/mvc/model/loginRememberSQL.php";
                         }
                         //Then, when everything is OK, redirect to last page
-                        header('location: '.$lastPage.'');
+                        if ($lastPage == "agkeeb") {
+                          header('location: index.php');
+                        } else {
+                          header('location: '.$lastPage.'');
+                        }
                     }}}}
     } else {
         // Error if the password is wrong
