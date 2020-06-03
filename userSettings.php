@@ -1,5 +1,4 @@
 <?php
-
 include "mvc/controller/config.php";
 include "mvc/controller/checkRememberMe.php";
 include "mvc/view/mainHeader.html";
