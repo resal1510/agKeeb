@@ -4,7 +4,7 @@ var rawID_selected;
 
 //When we click on the address boxes
 $(".customDivAddress").click(function(e) {
-  //Is it has class "border-custom" (So, when the address is'nt selected)
+  //Is it has class "border-custom" (So, when the address isn't selected)
   if ($(this).hasClass("border-custom")) {
     //Check if it has the class "addr2" to diferenciate the two addresses group (livraison / facturation)
     if (!$(this).hasClass('addr2')) {
@@ -31,6 +31,7 @@ $(".customDivAddress").click(function(e) {
   }
 });
 
+//Add shadow to addresses
 $('.customDivAddress').hover( function() {
     $(this).removeClass("shadow-drop-2-center-reverse")
     $(this).addClass("shadow-drop-2-center");

@@ -93,3 +93,12 @@ $('#editDefault').on("click", function() {
 $('#shipDefault').on("click", function() {
   $(this).val($(this).prop('checked'));
 });
+
+//Add shadow to addresses
+$('.Edit').hover( function() {
+    $(this).removeClass("shadow-drop-2-center-reverse")
+    $(this).addClass("shadow-drop-2-center");
+  }, function() {
+    $(this).removeClass("shadow-drop-2-center")
+    $(this).addClass("shadow-drop-2-center-reverse");
+  } );

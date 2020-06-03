@@ -1,16 +1,22 @@
 <?php
     if (empty(trim($_POST["oldPwd"]))) {
         $oldPwd_err = "Merci d'insérer votre mot de passe actuel";
+        echo "fdp";
     } else {
         $oldPwd = trim($_POST["oldPwd"]);
+        echo "string";
     }
+
     if (empty(trim($_POST["newPwd"]))) {
         $newPwd_err = "Merci d'insérer votre nouveau mot de passe";
+        echo $newPwd_err;
     } else {
         $newPwd = trim($_POST["newPwd"]);
     }
+
     if (empty(trim($_POST["confirmPwd"]))) {
       $confirmPwd_err = "Merci d'insérer une deuxième fois votre nouveau mot de passe";
+      echo $confirmPwd_err;
     } else {
       $confirmPwd = trim($_POST["confirmPwd"]);
       if ($confirmPwd == $newPwd) {

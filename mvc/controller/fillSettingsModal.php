@@ -5,8 +5,8 @@ error_reporting(E_ALL);
 
 include '../model/paymentListAddressSQL.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (trim($_POST["idAddresse"])) {
-    $idAddr = $_POST["idAddresse"];
+  if (trim($_POST["idItem"])) {
+    $idAddr = $_POST["idItem"];
   }
 
 
