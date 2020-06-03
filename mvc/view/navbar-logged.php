@@ -21,6 +21,7 @@
             <div class="dropdown-menu" role="menu">
               <a class="dropdown-item" role="presentation" href="orders.php"><i class="fas fa-shopping-bag" style="margin-right:10px;"></i>Commandes</a>
               <a class="dropdown-item" role="presentation" href="userSettings.php"><i class="fas fa-users-cog" style="margin-right:10px;"></i>Paramètres</a>
+              <?php include "mvc/controller/navBarCheckAdmin.php" ?>
               <div class="dropdown-divider"></div>
               <?php include "mvc/controller/navbarLScript.php" ?>
             </div>

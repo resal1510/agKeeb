@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <div class="modal fade" role="dialog" id="Edit">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -9,32 +7,32 @@
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="editForm">
         <div class="modal-body">
           <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4"><span>Prénom:</span></div>
-            <div class="col"><input type="text" class="champCustom" id="editName" name="nameAddr"></div>
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Prénom:</span></div>
+            <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editName" name="nameAddr"></div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4"><span>Nom:</span></div>
-            <div class="col"><input type="text" class="champCustom" id="editSurname" name="surnameAddr"></div>
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Nom:</span></div>
+            <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editSurname" name="surnameAddr"></div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4"><span>Rue et numéro:</span></div>
-            <div class="col"><input type="text" class="champCustom" id="editAddr" name="addressAddr"></div>
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Rue et numéro:</span></div>
+            <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editAddr" name="addressAddr"></div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4"><span>Code postal:</span></div>
-            <div class="col"><input type="text" class="champCustom" id="editNpa" name="npaAddr"></div>
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Code postal:</span></div>
+            <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editNpa" name="npaAddr"></div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4"><span>Ville:</span></div>
-            <div class="col"><input type="text" class="champCustom" id="editCity" name="cityAddr"></div>
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Ville:</span></div>
+            <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editCity" name="cityAddr"></div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4"><span>Téléphone:</span></div>
-            <div class="col"><input type="text" class="champCustom" id="editPhone" name="phoneAddr"></div>
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Téléphone:</span></div>
+            <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editPhone" name="phoneAddr"></div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
             <div class="col-4"><span>Par défaut?</span></div>
-            <div class="col"><input type="checkbox" id="editDefault" name="newDefault"></div>
+            <div class="col"><input type="checkbox" style="font-size: 14px;" id="editDefault" name="newDefault"></div>
           </div>
         </div>
         <div class="modal-footer">
@@ -57,32 +55,32 @@
         </div>
         <div class="modal-body">
           <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4"><span>Prénom:</span></div>
-            <div class="col"><input type="text" class="champCustom" id="shipName" name="newName"></div>
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Prénom:</span></div>
+            <div class="col"><input type="text" class="form-control-sm champCustom" id="shipName" name="newName"></div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4"><span>Nom:</span></div>
-            <div class="col"><input type="text" class="champCustom" id="shipSurname" name="newSurname"></div>
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Nom:</span></div>
+            <div class="col"><input type="text" class="form-control-sm champCustom" id="shipSurname" name="newSurname"></div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4"><span>Rue et numéro:</span></div>
-            <div class="col"><input type="text" class="champCustom" id="shipAddr" name="newAddr"></div>
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Rue et numéro:</span></div>
+            <div class="col"><input type="text" class="form-control-sm champCustom" id="shipAddr" name="newAddr"></div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4"><span>Code postal:</span></div>
-            <div class="col"><input type="text" class="champCustom" id="shipNpa" name="newNpa"></div>
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Code postal:</span></div>
+            <div class="col"><input type="text" class="form-control-sm champCustom" id="shipNpa" name="newNpa"></div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4"><span>Ville:</span></div>
-            <div class="col"><input type="text" class="champCustom" id="shipCity" name="newCity"></div>
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Ville:</span></div>
+            <div class="col"><input type="text" class="form-control-sm champCustom" id="shipCity" name="newCity"></div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4"><span>Téléphone:</span></div>
-            <div class="col"><input type="text" class="champCustom" id="shipPhone" name="newPhone"></div>
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Téléphone:</span></div>
+            <div class="col"><input type="text" class="form-control-sm champCustom" id="shipPhone" name="newPhone"></div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
             <div class="col-4"><span>Par défaut?</span></div>
-            <div class="col"><input type="checkbox" id="shipDefault" name="newDefault"></div>
+            <div class="col"><input type="checkbox" style="font-size: 14px;" id="shipDefault" name="newDefault"></div>
           </div>
         </div>
         <input type="text" name="what" value="addAddr" hidden>
@@ -116,27 +114,27 @@
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
           <h4 class="mb-4">Changer de mot de passe:</h4>
           <div class="row no-gutters mb-2">
-            <div class="col-5">
+            <div class="col-5 d-xl-flex align-items-xl-center">
               <span>Ancien mot de passe:&nbsp;</span>
             </div>
             <div class="col">
-              <input type="password" class="champCustom ml-2" name="oldPwd" value="<?php echo $oldPwd; ?>">
+              <input type="password" class="form-control-sm champCustom ml-2" name="oldPwd" value="<?php echo $oldPwd; ?>">
             </div>
           </div>
           <div class="row no-gutters mb-2">
-            <div class="col-5">
+            <div class="col-5 d-xl-flex align-items-xl-center">
               <span>Nouveau mot de passe:</span>
             </div>
             <div class="col">
-              <input type="password" class="champCustom ml-2" name="newPwd" value="<?php echo $newPwd; ?>" pattern=".{8,}" title="Le mot de passe doit contenir 8 caractères ou plus.">
+              <input type="password" class="form-control-sm champCustom ml-2" name="newPwd" value="<?php echo $newPwd; ?>" pattern=".{8,}" title="Le mot de passe doit contenir 8 caractères ou plus.">
             </div>
           </div>
           <div class="row no-gutters mb-3">
-            <div class="col-5">
+            <div class="col-5 d-xl-flex align-items-xl-center">
               <span>Répéter le nouveau mot de passe:</span>
             </div>
             <div class="col">
-              <input type="password" class="champCustom ml-2" name="confirmPwd" value="<?php echo $confirmPwd; ?>" pattern=".{8,}" title="Le mot de passe doit contenir 8 caractères ou plus.">
+              <input type="password" class="form-control-sm champCustom ml-2" name="confirmPwd" value="<?php echo $confirmPwd; ?>" pattern=".{8,}" title="Le mot de passe doit contenir 8 caractères ou plus.">
             </div>
           </div>
           <div style="color:red; font-weight: bold"><?php include "mvc/controller/userSettingsErr.php"; ?></div>
