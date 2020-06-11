@@ -48,35 +48,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               //echo "ID : ".$idDbTmp." Name : ".$nameDbTmp." Quantity : ".$qtyCartTmp." Total price : ".$actualPrice."  <br>";
               if ($baseOK == 0) {
                 //Create the base order into the Database
-                $sql = "INSERT INTO Commandes (id_commande, client, etat, montant, date_creation) VALUES (NULL, :idCustomer, '1', :orderPrice, CURRENT_TIMESTAMP)";
-                $stmt = $pdo->prepare($sql);
-                // Bind variables to the prepared statement as parameters
-                $stmt->bindParam(":idCustomer", $_SESSION["idClient"], PDO::PARAM_STR);
-                $stmt->bindParam(":orderPrice", $totalPrice, PDO::PARAM_STR);
-                $stmt->execute();
+                include "/var/www/allanresin2.tk/html/agkeeb/mvc/model/createOrderSQL1.php";
                 $idCreatedOrder = $pdo->lastInsertId();
                 //echo $idCreatedOrder;
                 $baseOK = 1;
               }
               //Create the items and link them to the correct order
-              $sql = "INSERT INTO Contenu_commandes (id_contenu_commandes, commande, article, quantite) VALUES (NULL, :lastOrder, :item, :quantity)";
-              $stmt = $pdo->prepare($sql);
-              // Bind variables to the prepared statement as parameters
-              $stmt->bindParam(":lastOrder", $idCreatedOrder, PDO::PARAM_STR);
-              $stmt->bindParam(":item", $idDbTmp, PDO::PARAM_STR);
-              $stmt->bindParam(":quantity", $qtyCartTmp, PDO::PARAM_STR);
-              $stmt->execute();
+              include "/var/www/allanresin2.tk/html/agkeeb/mvc/model/createOrderSQL2.php";
           }
         }
       }
   }
   //Add the correct addresses for this order
-  $sql = "INSERT INTO L_Commandes_Adresses (id_commande_adresses, commande, adresse_livraison, adresse_facturation) VALUES (NULL, :order, :shipAddr, :payAddr)";
-  $stmt = $pdo->prepare($sql);
-  // Bind variables to the prepared statement as parameters
-  $stmt->bindParam(":order", $idCreatedOrder, PDO::PARAM_STR);
-  $stmt->bindParam(":shipAddr", $shipAddress, PDO::PARAM_STR);
-  $stmt->bindParam(":payAddr", $payAddress, PDO::PARAM_STR);
+  include "/var/www/allanresin2.tk/html/agkeeb/mvc/model/createOrderSQL3.php";
   if ($stmt->execute()) {
 
     //Delete all cart items when the order is placed
