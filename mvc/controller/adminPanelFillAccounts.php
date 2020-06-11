@@ -5,11 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idItem = $_POST["idItem"];
   }
 
-$sth = $pdo->prepare('SELECT * FROM Clients WHERE id_client LIKE :id');
-$sth->bindParam(':id', $idItem, PDO::PARAM_STR);
-$sth->execute();
-$resultCustomer1 = $sth->fetchAll(\PDO::FETCH_ASSOC);
-
+include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelFillAccountsSQL.php';
   $customerID = "id_client";
   $customerMail = "mail";
   $customerIp = "derniere_ip";

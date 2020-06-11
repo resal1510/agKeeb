@@ -1,9 +1,6 @@
 <?php
 require_once "config.php";
-$pdo->exec('SET NAMES utf8');
-$sth = $pdo->prepare("SELECT * FROM Clients");
-$sth->execute();
-$resultCustomers = $sth->fetchAll(\PDO::FETCH_ASSOC);
+include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelListCustomerSQL.php';
 
 $fclientID = "id_client";
 $fclientMail = "mail";
@@ -31,7 +28,7 @@ foreach ($resultCustomers as $data) {
               <div class="col-2 d-xl-flex align-items-xl-center"><span>'.$data[$fclientID].'</span></div>
               <div class="col-6 d-xl-flex align-items-xl-center"><span>'.$data[$fclientMail].'</span></div>
               <div class="col-2 d-xl-flex justify-content-xl-end align-items-xl-center"><span>'.$isAdmin.'</span></div>
-              <div class="col-2 d-xl-flex justify-content-xl-end align-items-xl-center" style="font-size: 16px;"><i class="far fa-times-circle" style="color: #e71d1d;"></i></div>
+              <div class="col-2 d-xl-flex justify-content-xl-end align-items-xl-center" style="font-size: 16px;"><i class="fas fa-times" style="color: #e71d1d;"></i></div>
             </div>');
   }
 }

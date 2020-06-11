@@ -1,9 +1,6 @@
 <?php
 require_once "config.php";
-$pdo->exec('SET NAMES utf8');
-$sth = $pdo->prepare("SELECT * FROM Articles");
-$sth->execute();
-$resultItems = $sth->fetchAll(\PDO::FETCH_ASSOC);
+include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelListItemSQL.php';
 
 $fItemsId = "id_article";
 $fItemscategorie = "categorie";
@@ -12,8 +9,6 @@ $fItemsDesc = "description";
 $fItemsPrice = "prix_unitaire";
 $fItemsStock = "stock";
 $fItemsEnabled = "enabled";
-
-
 
 foreach ($resultItems as $data) {
   if ($data[$fItemsEnabled] == "true") {

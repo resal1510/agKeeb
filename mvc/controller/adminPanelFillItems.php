@@ -5,10 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $idItem = $_POST["idItem"];
   }
 
-$sth = $pdo->prepare('SELECT * FROM Articles INNER JOIN Images ON id_article = Images.article WHERE id_article LIKE :id');
-$sth->bindParam(':id', $idItem, PDO::PARAM_STR);
-$sth->execute();
-$resultItems1 = $sth->fetchAll(\PDO::FETCH_ASSOC);
+include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelFillItemsSQL.php';
 
   $itemID = "id_article";
   $itemName = "nom_article";
@@ -31,10 +28,7 @@ $resultItems1 = $sth->fetchAll(\PDO::FETCH_ASSOC);
     $image = $key[$itemImageName];
   }
 
-  $sth2 = $pdo->prepare("SELECT * FROM `Commentaires` WHERE article LIKE :wantedId");
-  $sth2->bindParam(':wantedId', $id, PDO::PARAM_STR);
-  $sth2->execute();
-  $resultForReviews = $sth2->fetchAll(\PDO::FETCH_ASSOC);
+  include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelFillItemReviewSQL.php';
 
   $rAllNotes = array();
   foreach ($resultForReviews as $key) {
@@ -43,13 +37,13 @@ $resultItems1 = $sth->fetchAll(\PDO::FETCH_ASSOC);
   }
 
   if (count($rAllNotes) == 0) {
-      $rAStarsEmptyVar = '<img src="img/star-empty.svg" style="width: 22px;">';
+      $rAStarsEmptyVar = '<img src="img/star-empty.svg" style="width: 19px;">';
       $rActualStars = str_repeat($rAStarsEmptyVar, 5);
   } else {
     $rAverageStars = round(array_sum($rAllNotes)/count($rAllNotes) * 2) / 2;
     if (strpos( $rAverageStars, '.' ) === false) {
-      $rAStarsVar = '<img src="img/star.svg" style="width: 22px;">';
-      $rAStarsEmptyVar = '<img src="img/star-empty.svg" style="width: 22px;">';
+      $rAStarsVar = '<img src="img/star.svg" style="width: 19px;">';
+      $rAStarsEmptyVar = '<img src="img/star-empty.svg" style="width: 19px;">';
       $emptyStars = 5 - $rAverageStars;
 
       $rActualStarsEmpty = str_repeat($rAStarsEmptyVar, $emptyStars);
@@ -58,9 +52,9 @@ $resultItems1 = $sth->fetchAll(\PDO::FETCH_ASSOC);
       $rActualStars = $rActualStarsTemp. $rActualStarsEmpty;
     } else {
     $rAverageStars = $rAverageStars - 0.5;
-      $rAStarsVar = '<img src="img/star.svg" style="width: 22px;">';
-      $rAStarsMiddleVar = '<img src="img/star-half-empty.svg" style="width: 22px;">';
-      $rAStarsEmptyVar = '<img src="img/star-empty.svg" style="width: 22px;">';
+      $rAStarsVar = '<img src="img/star.svg" style="width: 19px;">';
+      $rAStarsMiddleVar = '<img src="img/star-half-empty.svg" style="width: 19px;">';
+      $rAStarsEmptyVar = '<img src="img/star-empty.svg" style="width: 19px;">';
 
       $emptyStars = 4 - $rAverageStars;
 

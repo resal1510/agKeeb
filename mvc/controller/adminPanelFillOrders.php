@@ -4,16 +4,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (trim($_POST["idItem"])) {
     $idItem = $_POST["idItem"];
   }
-
-$sth = $pdo->prepare('SELECT * FROM Commandes WHERE id_commande LIKE :id');
-$sth->bindParam(':id', $idItem, PDO::PARAM_STR);
-$sth->execute();
-$resultOrders1 = $sth->fetchAll(\PDO::FETCH_ASSOC);
-
-$sth = $pdo->prepare('SELECT * FROM Contenu_commandes INNER JOIN Articles ON article = Articles.id_article WHERE commande LIKE :id');
-$sth->bindParam(':id', $idItem, PDO::PARAM_STR);
-$sth->execute();
-$resultOrders2 = $sth->fetchAll(\PDO::FETCH_ASSOC);
+include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelFillOrdersSQL1.php';
+include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelFillOrdersSQL2.php';
 
   $orderId = "id_commande";
   $orderCustomer = "client";
@@ -39,7 +31,7 @@ $resultOrders2 = $sth->fetchAll(\PDO::FETCH_ASSOC);
         </div>';
   }
 
-  $dateTmp = date_create($data[$orderDate]);
+  $dateTmp = date_create($date);
   $tmpDateFormat = date_format($dateTmp, 'd.m.Y - H:i');
 
   $orderArray = array('id' => $id, 'customer' => $customer, 'date' => $tmpDateFormat, 'price' => $price, 'state' => $state, 'content' => $allContent);

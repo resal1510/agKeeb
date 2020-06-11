@@ -98,6 +98,7 @@ $(".Comment").on("click", function() {
       $('#accountComment').val(data.customer);
       $('#dateComment').val(data.date);
       $('#stateComment').val(data.visible);
+      $('#nameComment').val(data.pseudo);
     }
   });
 });
