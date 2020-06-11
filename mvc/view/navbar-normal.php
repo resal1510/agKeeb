@@ -1,5 +1,5 @@
 <body>
-  <div class="spacer" style="margin-bottom:72px"></div>
+  <div class="spacer" style="margin-bottom: 72px"></div>
   <nav class="navbar navbar-light navbar-expand-lg text-muted shadow-sm navigation-clean-search fixed-top" style="background-color: #FFFFFF;padding-left: 100px;padding-right: 100px;">
     <div class="container-fluid"><a class="navbar-brand text-black-50" href="index.php" style="margin-left: 0px;">agKeeb</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" style="margin-right: 0px;"><span
           class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>

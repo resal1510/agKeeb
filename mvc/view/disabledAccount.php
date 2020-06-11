@@ -1,4 +1,4 @@
 <?php
 include "mainHeader.html";
 ?>
-<h3>Your account is disabled. Please contact the support.</h3>
+<h3>Votre compte est désactivé. Prière de contacter le support à l'adresse suivante: <A HREF="mailto:support@agkeeb.ch">support@agkeeb.ch</A></h3>

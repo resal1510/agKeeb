@@ -17,12 +17,12 @@
                         <div class="form-row justify-content-between mt-2 addr1">
                             <?php include "mvc/controller/paymentListAddr.php"; ?>
                         </div>
-                        <div class="col" style="padding-left: 0px;padding-right: 0px;"><a href="#">Ajouter/modifier une adresse</a></div>
+                        <div class="col" style="padding-left: 0px;padding-right: 0px;"><a href="userSettings.php">Ajouter/modifier une adresse</a></div>
                         <h3 class="title mb-2 mt-5" style="margin-bottom: 0px;">Adresse de facturation</h3><span style="font-size: 14px;">Mes adresses:</span>
                         <div class="form-row justify-content-between mt-2 addr2">
                             <?php include "mvc/controller/paymentListAddr2.php"; ?>
                         </div>
-                        <div class="col" style="padding-left: 0px;padding-right: 0px;"><a href="#">Ajouter/modifier une adresse</a></div>
+                        <div class="col" style="padding-left: 0px;padding-right: 0px;"><a href="userSettings.php">Ajouter/modifier une adresse</a></div>
                         <div class="form-row">
                             <div class="col">
                                 <div class="form-group">

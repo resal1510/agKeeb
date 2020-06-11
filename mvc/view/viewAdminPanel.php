@@ -1,4 +1,3 @@
-
 <body>
   <main class="page faq-page">
     <section class="dark clean-block">
@@ -62,15 +61,15 @@
 
 
           <h5 class="mb-4 mt-5">Gérer les articles:</h5>
-          <div class="row marginCustomAdresses">
+          <div class="row marginCustomAdresses mb-4">
             <div class="col-2 d-lg-flex align-items-lg-center"><span>Rechercher:</span></div>
-            <div class="col-auto ml-2"><select class="custom-select custom-select-sm">
+            <div class="col-auto"><select class="custom-select custom-select-sm">
                 <option value="" selected="">Par identifiant</option>
                 <option value="">Par article</option>
               </select></div>
             <div class="col"><input class="form-control-sm champCustom" type="text" name="searchItem"></div>
           </div>
-          <div class="row marginCustomAdresses">
+          <div hidden class="row marginCustomAdresses">
             <div class="col-2 d-lg-flex align-items-lg-center"><span>État:<br></span></div>
             <div class="col-auto ml-2"><select class="custom-select custom-select-sm">
                 <option value="" selected="">Tous les articles</option>
@@ -78,14 +77,14 @@
                 <option value="">Articles désactivés</option>
               </select></div>
           </div>
-          <div class="row marginCustomAdresses">
+          <div hidden class="row marginCustomAdresses">
             <div class="col-2 d-lg-flex align-items-lg-center"><span>Catégorie:<br></span></div>
             <div class="col-auto ml-2"><select class="custom-select custom-select-sm">
                 <option value="all" selected="">Tous les articles</option>
                 <?php include "mvc/controller/adminPanelSelectItemCat.php" ?>
               </select></div>
           </div>
-          <div class="row mb-4">
+          <div hidden class="row mb-4">
             <div class="col-2 d-lg-flex align-items-lg-center"><span>Trier par:</span></div>
             <div class="col-auto ml-2"><select class="custom-select custom-select-sm">
                 <option value="">Identifiant ascendant</option>
@@ -96,6 +95,8 @@
                 <option value="">Stock descendant</option>
               </select></div>
           </div>
+          <?php if (!empty($iEditErr)) {print_r('<p style="color:red;font-weight:bold">'.$iEditErr.'</p>');} ?>
+          <?php if (!empty($iEditSuccess)) {print_r('<p style="color:#3b99e0;font-weight:bold">'.$iEditSuccess.'</p>');} ?>
           <div class="row justify-content-between border p-1" style="font-weight: 550;font-size: 15.5px;">
             <div class="col-2 d-xl-flex align-items-xl-center border-right"><span>Identifiant:</span></div>
             <div class="col-4 d-xl-flex align-items-xl-center border-right"><span>Article:</span></div>
@@ -108,15 +109,15 @@
             <div class="col" style="font-size: 12px;font-style: italic;"><span>Cliquez sur un article pour le visualiser/modifier.</span></div>
           </div>
           <h4 class="mb-4 mt-5">Gestion des clients:</h4>
-          <div class="row marginCustomAdresses">
+          <div class="row marginCustomAdresses mb-4">
             <div class="col-2 d-lg-flex align-items-lg-center"><span>Rechercher:</span></div>
-            <div class="col-auto ml-2"><select class="custom-select custom-select-sm">
+            <div class="col-auto"><select class="custom-select custom-select-sm">
                 <option value="" selected="">Par identifiant</option>
                 <option value="">Par e-mail</option>
               </select></div>
             <div class="col"><input class="form-control-sm champCustom" type="text" name="searchAccount"></div>
           </div>
-          <div class="row marginCustomAdresses">
+          <div hidden class="row marginCustomAdresses">
             <div class="col-2 d-lg-flex align-items-lg-center"><span>État:</span></div>
             <div class="col-auto ml-2"><select class="custom-select custom-select-sm">
                 <option value="" selected="">Tous les clients</option>
@@ -124,7 +125,7 @@
                 <option value="">Comptes désactivés</option>
               </select></div>
           </div>
-          <div class="row marginCustomAdresses">
+          <div hidden class="row marginCustomAdresses">
             <div class="col-2 d-lg-flex align-items-lg-center"><span>Admin:</span></div>
             <div class="col-auto ml-2"><select class="custom-select custom-select-sm">
                 <option value="" selected="">Tous les clients</option>
@@ -132,7 +133,7 @@
                 <option value="">Clients</option>
               </select></div>
           </div>
-          <div class="row mb-4">
+          <div hidden class="row mb-4">
             <div class="col-2 d-lg-flex align-items-lg-center"><span>Trier par:</span></div>
             <div class="col-auto ml-2"><select class="custom-select custom-select-sm">
                 <option value="">Identifiant ascendant</option>
@@ -150,9 +151,9 @@
             <div class="col" style="font-size: 12px;font-style: italic;"><span>Cliquez sur un compte pour le visualiser/modifier.</span></div>
           </div>
           <h4 class="mb-4 mt-5">Gestion des commandes:</h4>
-          <div class="row marginCustomAdresses">
+          <div class="row marginCustomAdresses mb-4">
             <div class="col-2 d-lg-flex align-items-lg-center"><span>Rechercher:</span></div>
-            <div class="col-auto ml-2"><select class="custom-select custom-select-sm">
+            <div class="col-auto"><select class="custom-select custom-select-sm">
                 <option value="" selected="">Par identifiant</option>
                 <option value="">Par client</option>
                 <option value="">Par date de création</option>
@@ -160,7 +161,7 @@
               </select></div>
             <div class="col"><input class="form-control-sm champCustom" type="text" name="searchOrder"></div>
           </div>
-          <div class="row marginCustomAdresses">
+          <div hidden class="row marginCustomAdresses">
             <div class="col-2 d-lg-flex align-items-lg-center"><span>État:</span></div>
             <div class="col-auto ml-2"><select class="custom-select custom-select-sm">
                 <option value="" selected="">Toutes les commandes</option>
@@ -171,7 +172,7 @@
                 <option value="">Clôturée</option>
               </select></div>
           </div>
-          <div class="row mb-4">
+          <div hidden class="row mb-4">
             <div class="col-2 d-lg-flex align-items-lg-center"><span>Trier par:</span></div>
             <div class="col-auto ml-2"><select class="custom-select custom-select-sm">
                 <option value="">Identifiant ascendant</option>
@@ -192,18 +193,19 @@
             <div class="col" style="font-size: 12px;font-style: italic;"><span>Cliquez sur une commande pour la visualiser/modifier.</span></div>
           </div>
           <h4 class="mb-4 mt-5">Gestion des commentaires:</h4>
-          <div class="row marginCustomAdresses">
+          <div class="row marginCustomAdresses mb-4">
             <div class="col-2 d-lg-flex align-items-lg-center"><span>Rechercher:</span></div>
-            <div class="col-auto ml-2"><select class="custom-select custom-select-sm">
+            <div class="col-auto"><select class="custom-select custom-select-sm">
                 <option value="" selected="">Par identifiant</option>
                 <option value="">Par article</option>
                 <option value="">Par commentaire</option>
                 <option value="">Par client</option>
+                <option value="">Par pseudo</option>
                 <option value="">Par date de création</option>
               </select></div>
             <div class="col"><input class="form-control-sm champCustom" type="text" name="searchOrder"></div>
           </div>
-          <div class="row marginCustomAdresses">
+          <div hidden class="row marginCustomAdresses">
             <div class="col-2 d-lg-flex align-items-lg-center"><span>État:</span></div>
             <div class="col-auto ml-2"><select class="custom-select custom-select-sm">
                 <option value="" selected="">Tous les commentaires</option>
@@ -211,7 +213,7 @@
                 <option value="">Commentaires désactivés</option>
               </select></div>
           </div>
-          <div class="row mb-4">
+          <div hidden class="row mb-4">
             <div class="col-2 d-lg-flex align-items-lg-center"><span>Trier par:</span></div>
             <div class="col-auto ml-2"><select class="custom-select custom-select-sm">
                 <option value="">Identifiant ascendant</option>
@@ -244,7 +246,7 @@
         <div class="modal-header">
           <h4 class="modal-title">Article - #<span id="itemIDTitle"></span></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         </div>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="keepScrollPos()">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="keepScrollPos()" enctype="multipart/form-data">
         <div class="modal-body">
           <div class="row no-gutters marginCustomAdresses">
             <div class="col-4 d-xl-flex align-items-xl-center"><span>Identifiant:</span></div>
@@ -283,7 +285,7 @@
               <span>Image:</span>
             </div>
             <div class="col-auto ml-2">
-              <div id="itemImage">
+              <div id="itemImage" style="margin-bottom:13px">
               </div>
               <input type="file" style="font-size: 13px;" name="modalImageItem">
             </div>
@@ -406,6 +408,10 @@
             <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="idComment" id="idComment"></div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Pseudo:</span></div>
+            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="nameComment" id="nameComment"></div>
+          </div>
+          <div class="row no-gutters marginCustomAdresses">
             <div class="col-4 d-xl-flex align-items-xl-center"><span>Article:</span></div>
             <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="itemComment" id="itemComment"></div>
           </div>
@@ -415,7 +421,7 @@
           </div>
           <div class="row no-gutters marginCustomAdresses">
             <div class="col-4 d-xl-flex align-items-xl-center"><span>Commentaire:</span></div>
-            <div class="col ml-2"><textarea class="champCustom pl-2" style="font-size: 14px;" name="commentComment" id="commentComment"></textarea></div>
+            <div class="col ml-2"><textarea class="champCustom pl-2 pt-1" style="font-size: 14px;" name="commentComment" id="commentComment" readonly></textarea></div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
             <div class="col-4 d-xl-flex align-items-xl-center"><span>Client:</span></div>
