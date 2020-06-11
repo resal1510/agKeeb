@@ -14,7 +14,7 @@ echo "<div class='col-md-12' style='margin-top: 72px;'>";
 
     if($action=='exists'){
         echo "<div class='alert alert-info'>";
-            echo "Le produit existe déjà dans votre panier ! Pour modifier la quantité, merci de le faire sur la page Panier";
+            echo "Le produit existe déjà dans votre panier! Pour modifier la quantité, merci de le faire depuis le panier.";
         echo "</div>";
     }
 echo "</div>";

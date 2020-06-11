@@ -3,6 +3,7 @@ $(document).ready(function() {
   $(".shipAddr").on("click", function() {
     //Take the ID of the address and send it w/ ajax
     var tmpid = $(this).attr("id").replace(/\D/g, '');
+    console.log(tmpid);
     $.ajax({
       url: 'mvc/controller/fillSettingsModal.php',
       type: 'POST',
