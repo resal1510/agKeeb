@@ -30,7 +30,7 @@ $isVisible = "visible";
 
 
 //Variable that we will use uin the html
-$pName = $pDesc = $pImage = $pPrice = $pEnabled = $rNumberStars = $rComment = $rDate = $rVisible = "";
+$pName = $pDesc = $pImage = $pPrice = $pEnabled = $rNumberStars = $rComment = $rDate = $rVisible = $pCategory = "";
 $rCount = 0;
 $rAllNotes = array();
 
@@ -40,6 +40,6 @@ foreach ($resultForImage as $key) {
   $pImage = $key[$nom_image];
   $pPrice = $key[$price];
   $pEnabled = $key[$enabled];
+  $pCat = $key[$category];
 }
-
  ?>

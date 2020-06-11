@@ -1,10 +1,7 @@
 <?php
 
 require_once "config.php";
-$pdo->exec('SET NAMES utf8');
-$sth = $pdo->prepare("SELECT * FROM Commandes");
-$sth->execute();
-$resultOrders = $sth->fetchAll(\PDO::FETCH_ASSOC);
+include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelListOrdersSQL.php';
 
 $fOrderId = "id_commande";
 $fOrderClient = "client";
@@ -17,7 +14,7 @@ echo date_format($date, 'd.m.Y H:i');
 */
 foreach ($resultOrders as $data) {
   switch ($data[$fOrderEtat]) {
-    case 4:
+    case 5:
       print_r('<div class="row justify-content-between Order border-left border-right border-bottom p-1" style="font-size: 14px;background-color: #eeeeee;" id="o'.$data[$fOrderId].'">');
       break;
     default:
@@ -47,11 +44,11 @@ foreach ($resultOrders as $data) {
       print_r('<div class="col-2 d-xl-flex justify-content-xl-end align-items-xl-center" style="font-size: 16px;"><i class="fas fa-sync" style="color: rgb(249,180,0);"></i></div></div>');
       break;
     //Commande envoyée
-    case 5:
+    case 4:
       print_r('<div class="col-2 d-xl-flex justify-content-xl-end align-items-xl-center" style="font-size: 16px;"><i class="fa fa-plane" style="color: #00a3ff;"></i></div></div>');
       break;
     //Commante terminée
-    case 4:
+    case 5:
       print_r('<div class="col-2 d-xl-flex justify-content-xl-end align-items-xl-center" style="font-size: 16px;"><i class="fa fa-check" style="color: #52dc3c;"></i></div></div>');
       break;
   }

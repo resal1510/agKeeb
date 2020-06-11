@@ -1,10 +1,11 @@
 <?php
-
+$nameS = "pseudo";
   foreach ($resultForReviews as $key) {
     $rNumberStars = $key[$stars];
     $rComment = $key[$comment];
     $rDate = date("d.m.Y", strtotime($key[$date]));
     $rVisible = $key[$isVisible];
+    $rName = $key[$nameS];
 
     if ($rVisible == "true") {
       switch ($rNumberStars) {
@@ -27,7 +28,7 @@
 
       $reviewHTML = '<div class="border rounded-0 review-item" style="margin-bottom: 30px;padding: 20px;">
         <div class="rating" style="margin-bottom: 10px;">'.$rStars.'</div>
-          <h4 style="font-size: 19px;"></h4><span class="text-muted">Le '.$rDate.'</span>
+          <h4 style="font-size: 19px;"></h4><span class="text-muted">'.$rName.', le '.$rDate.'</span>
           <p style="margin-top: 12px;font-size: 14px;">'.$rComment.'</p>
       </div>';
       echo $reviewHTML;

@@ -3,10 +3,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+$idAddr = "";
 include '../model/paymentListAddressSQL.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (trim($_POST["idItem"])) {
-    $idAddr = $_POST["idItem"];
+  if (trim($_POST["idAddresse"])) {
+    $idAddr = $_POST["idAddresse"];
   }
 
 

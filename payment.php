@@ -6,5 +6,5 @@ include "mvc/controller/navbarInclude.php";
 include "mvc/view/mainHeader.html";
 include 'mvc/model/paymentListAddressSQL.php';
 include "mvc/controller/paymentCheckLogin.php";
+include "mvc/view/footer.html";
 ?>
-</html>

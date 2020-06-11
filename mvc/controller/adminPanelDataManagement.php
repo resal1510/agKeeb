@@ -1,7 +1,7 @@
 <?php
-include "config.php";
-$addError;
-$addSuccess;
+$addError; $iEditErr;
+$addSuccess; $iEditSuccess;
+$nameOldImage;
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   $dowhatForm = trim($_POST["doWhat"]);
@@ -32,24 +32,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 } else {
                   $addStatus = trim($_POST['itemStatus']);
                   }}}}}}
-
                   if (empty($addError)) {
-                    //$itemImageTemp = addslashes(file_get_contents());
                     $itemImageName = $_FILES["imageItem"]["name"];
                     $itemImageTemp = addslashes(file_get_contents($_FILES['imageItem']['tmp_name']));
 
-
-                    $sql = "INSERT INTO Articles (categorie, nom_article, prix_unitaire, stock, enabled, description) VALUES (:categoryItem, :nameItem, :priceItem, :stockItem, :stateItem, :descItem)";
-                    $stmt = $pdo->prepare($sql);
-                        // Set params
-                        $stmt->bindParam(":nameItem", $addName, PDO::PARAM_STR);
-                        $stmt->bindParam(":categoryItem", $addCat, PDO::PARAM_STR);
-                        $stmt->bindParam(":priceItem", $addPrice, PDO::PARAM_STR);
-                        $stmt->bindParam(":stockItem", $addStock, PDO::PARAM_STR);
-                        $stmt->bindParam(":descItem", $addDesc, PDO::PARAM_STR);
-                        $stmt->bindParam(":stateItem", $addStatus, PDO::PARAM_STR);
-                        // Execute SQL
-                        $stmt->execute();
+                    include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelDataAddItemSQL.php';
 
                         $articleImage = $pdo->lastInsertId();
                             // Uploads files
@@ -64,33 +51,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $size = $_FILES['imageItem']['size'];
 
                             if (!in_array($extension, ['png'])) {
-                              $sql = "DELETE FROM Articles WHERE id_article = :id";
-                              $stmt = $pdo->prepare($sql);
-                              $stmt->bindParam(":id", $articleImage, PDO::PARAM_STR);
-                              $stmt->execute();
+                              //Delete article when it's not PNG image
+                              include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelDataAddItemSQL3.php';
                               echo "You file extension must be .png";
                             } elseif ($_FILES['imageItem']['size'] > 5000000) { // file shouldn't be larger than 5 Megabyte
-                              $sql = "DELETE FROM Articles WHERE Articles.id_article = $articleImage";
-                              $stmt = $pdo->prepare($sql);
-                              $stmt->execute();
+                              //Delete if it's larger than 5mb
+                              include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelDataAddItemSQL3.php';
                               //echo "File too large!";
                             } else {
                               // move the uploaded (temporary) file to the specified destination
                               if (move_uploaded_file($file, $destination)) {
-                                $sql = "INSERT INTO Images (id_image, article, taille_image, nom_image) VALUES (NULL, :article, :size, :filename)";
-                                $stmt = $pdo->prepare($sql);
-                                    // Set params
-                                    $stmt->bindParam(":article", $articleImage, PDO::PARAM_STR);
-                                    $stmt->bindParam(":size", $size, PDO::PARAM_STR);
-                                    $stmt->bindParam(":filename", $filename, PDO::PARAM_STR);
-                                    // Execute SQL
-                                    $stmt->execute();
+                                //Add image details to DB because everything is finally fking okay
+                                include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelDataAddItemSQL4.php';
                                   //echo "File uploaded successfully";
                                   $addSuccess = "L'article a bien été créé ! ID : ".$articleImage." ";
                               } else {
-                                $sql = "DELETE FROM Articles WHERE Articles.id_article = $articleImage";
-                                $stmt = $pdo->prepare($sql);
-                                $stmt->execute();
+                                //Delete item if it's finally not okay
+                                include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelDataAddItemSQL3.php';
                                 //echo "Failed to upload file. Article add is canceled";
                               }
                             }
@@ -103,37 +80,89 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     if (!empty($_POST['modalNameItem'])) {
       $itemNewName = $_POST['modalNameItem'];
+    } else {
+      $iEditErr = "Le nom est vide";
     }
     if (!empty($_POST['modalCatItem'])) {
       $itemNewCat = $_POST['modalCatItem'];
     }
     if (!empty($_POST['modalDescItem'])) {
       $itemNewDesc = $_POST['modalDescItem'];
+    } else {
+      $iEditErr = "La description est vide";
     }
     if (!empty($_POST['modalPriceItem'])) {
       $itemNewPrice = $_POST['modalPriceItem'];
+    } else {
+      $iEditErr = "Le prix est vide";
     }
     if (!empty($_POST['modalStockItem'])) {
       $itemNewStock = $_POST['modalStockItem'];
-    }
-    if (!empty($_POST['modalImageItem'])) {
-      $itemNewImage = $_POST['modalImageItem'];
+    } else {
+      $iEditErr = "Le stock est vide";
     }
     if (!empty($_POST['stateItem'])) {
       $itemNewState = $_POST['stateItem'];
     }
 
-    $sql = "UPDATE Articles SET categorie = :cat, nom_article = :name, description = :description, prix_unitaire = :price, stock = :stock, enabled = :state WHERE Articles.id_article = :id";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(":id", $itemID, PDO::PARAM_STR);
-    $stmt->bindParam(":name", $itemNewName, PDO::PARAM_STR);
-    $stmt->bindParam(":cat", $itemNewCat, PDO::PARAM_STR);
-    $stmt->bindParam(":description", $itemNewDesc, PDO::PARAM_STR);
-    $stmt->bindParam(":price", $itemNewPrice, PDO::PARAM_STR);
-    $stmt->bindParam(":stock", $itemNewStock, PDO::PARAM_STR);
-    //$stmt->bindParam(":addrDefault", $itemNewImage, PDO::PARAM_STR);
-    $stmt->bindParam(":state", $itemNewState, PDO::PARAM_STR);
-    $stmt->execute();
+    if (empty($iEditErr)) {
+      //Edit item in SQL
+      include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelDataEditItemSQL.php';
+      if (!empty($_FILES['modalImageItem']["name"])) {
+        $articleImage = $pdo->lastInsertId();
+        $sth2 = $pdo->prepare("SELECT * FROM Images WHERE article = $itemID");
+        $sth2->execute();
+        $resultDeleteOld = $sth2->fetchAll(\PDO::FETCH_ASSOC);
+        $nameI = "nom_image";
+
+        foreach ($resultDeleteOld as $key) {
+          $nameOldImage = '/var/www/allanresin2.tk/html/agkeeb/uploads/' . $key[$nameI];
+        }
+
+        // Uploads files
+        // name of the uploaded file
+        $filename = $_FILES['modalImageItem']['name'];
+        // destination of the file on the server
+        $destination = 'uploads/' . $filename;
+        // get the file extension
+        $extension = pathinfo($filename, PATHINFO_EXTENSION);
+        // the physical file on a temporary uploads directory on the server
+        $file = $_FILES['modalImageItem']['tmp_name'];
+        $size = $_FILES['modalImageItem']['size'];
+
+        if (!in_array($extension, ['png'])) {
+          //Delete article when it's not PNG image
+          include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelDataAddItemSQL3.php';
+          $iEditErr = "L'image doit être en format .png";
+        } elseif ($_FILES['modalImageItem']['size'] > 5000000) { // file shouldn't be larger than 5 Megabyte
+          //Delete if it's larger than 5mb
+          include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelDataAddItemSQL3.php';
+          $iEditErr = "L'image ne doit pas dépasser 5 Mb";
+        } else {
+          // move the uploaded (temporary) file to the specified destination
+          if (move_uploaded_file($file, $destination)) {
+            //Add image details to DB because everything is finally fking okay
+            //$iEditSuccess = "L'article ".$itemID." a bien été modifié !";
+              $sql = "UPDATE Images SET taille_image = :size, nom_image = :filename WHERE Images.article = :id";
+              $stmt = $pdo->prepare($sql);
+              // Set params
+              $stmt->bindParam(":size", $size, PDO::PARAM_STR);
+              $stmt->bindParam(":filename", $filename, PDO::PARAM_STR);
+              $stmt->bindParam(":id", $itemID, PDO::PARAM_STR);
+              // Execute SQL
+              $stmt->execute();
+              unlink($nameOldImage);
+          } else {
+            //Delete item if it's finally not okay
+            include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelDataAddItemSQL3.php';
+            $iEditErr = "Quelque chose s'est mal passé. Merci de réessayer";
+          }
+        }
+      }
+      if (empty($iEditErr)) {
+        $iEditSuccess = "L'article ".$itemID." a bien été modifié !";
+      }
+    }
       break;
 
     case 'editCustomer':
@@ -149,12 +178,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $accountState = $_POST['stateAccount'];
     }
 
-    $sql = "UPDATE Clients SET admin = :admin, active = :state WHERE Clients.id_client = :id";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(":id", $accountID, PDO::PARAM_STR);
-    $stmt->bindParam(":admin", $accountAdmin, PDO::PARAM_STR);
-    $stmt->bindParam(":state", $accountState, PDO::PARAM_STR);
-    $stmt->execute();
+      //Edit customer in SQL
+      include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelDataEditCustomerSQL.php';
       break;
 
       case 'editOrders':
@@ -165,30 +190,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $orderState = $_POST['stateOrder'];
       }
 
-      $sql = "UPDATE Commandes SET etat = :state WHERE Commandes.id_commande = :id";
-      $stmt = $pdo->prepare($sql);
-      $stmt->bindParam(":id", $orderID, PDO::PARAM_STR);
-      $stmt->bindParam(":state", $orderState, PDO::PARAM_STR);
-      $stmt->execute();
+      include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelDataEditOrdersSQL.php';
       break;
 
       case 'editComments':
       if (!empty($_POST['idComment'])) {
         $commentID = $_POST['idComment'];
       }
-      if (!empty($_POST['commentComment'])) {
-        $commentText = $_POST['commentComment'];
-      }
       if (!empty($_POST['stateComment'])) {
         $commentState = $_POST['stateComment'];
       }
 
-      $sql = "UPDATE Commentaires SET commentaire = :cText, visible = :state WHERE Commentaires.id_commentaire = :id";
-      $stmt = $pdo->prepare($sql);
-      $stmt->bindParam(":id", $commentID, PDO::PARAM_STR);
-      $stmt->bindParam(":cText", $commentText, PDO::PARAM_STR);
-      $stmt->bindParam(":state", $commentState, PDO::PARAM_STR);
-      $stmt->execute();
+        //Edit comment in SQL
+        include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelDataEditCommentsSQL.php';
         break;
   }
 }

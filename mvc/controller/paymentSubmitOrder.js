@@ -23,7 +23,7 @@ function submitOrder() {
         success: function(data) {
           var dataTmp = "OrderID:"+data;
           urlOption = btoa(dataTmp);
-          window.location.replace("http://allanresin2.tk/agkeeb/confirmation.php?order="+urlOption);
+          window.location.replace("http://sandbox.allanresin.ch/agkeeb/confirmation.php?order="+urlOption);
         }
     });
 }
