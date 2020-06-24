@@ -25,8 +25,9 @@ $description = "description";
 $category = "categorie";
 $stars = "note";
 $comment = "commentaire";
-$date = "date";
+$date = "date_creation";
 $isVisible = "visible";
+$idComm = "id_commentaire";
 
 
 //Variable that we will use uin the html

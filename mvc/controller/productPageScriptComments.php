@@ -1,9 +1,17 @@
 <?php
+include "/var/www/allanresin2.tk/html/agkeeb/mvc/model/productPageCommentsSQL.php";
+$stars = "note";
+$comment = "commentaire";
+$date = "date_creation";
+$isVisible = "visible";
+$idComm = "id_commentaire";
 $nameS = "pseudo";
-  foreach ($resultForReviews as $key) {
+
+  foreach ($resultForComments as $key) {
     $rNumberStars = $key[$stars];
     $rComment = $key[$comment];
-    $rDate = date("d.m.Y", strtotime($key[$date]));
+    $timestamp = strtotime($key[$date]);
+    $rDate = date("d.m.Y", $timestamp);
     $rVisible = $key[$isVisible];
     $rName = $key[$nameS];
 
