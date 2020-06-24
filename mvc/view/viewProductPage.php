@@ -48,9 +48,9 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Ajouter un commentaire</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <h4 class="modal-title">Ajouter un commentaire</h4><button type="button" class="close" aria-label="Close"><span aria-hidden="true">×</span></button></div>
             <div class="modal-body">
-              <form action="productPage.php?id_product=76" method="post" onsubmit="keepScrollPos()" id="formAddComm">
+              <form method="post" id="formAddComm">
                 <div class="row no-gutters marginCustomAdresses">
                     <div class="col-4 d-xl-flex align-items-xl-center"><span>Pseudo:</span></div>
                     <div class="col ml-2">
@@ -76,6 +76,16 @@
                       <textarea class="champCustom pl-2 pt-1" style="font-size: 14px;" name="commentComment" id="commentComment"></textarea>
                     </div>
                 </div>
+
+                <div class="row no-gutters marginCustomAdresses">
+                    <div class="col-4 d-xl-flex align-items-xl-center">
+                      <label for="password">Merci d'entrer le CAPTCHA.</label>
+                    </div>
+                    <div class="col ml-2">
+                      <img id="captchaStyle" src="mvc/controller/captchaGenerator.php" /><i id="refreshCaptcha" class="fas fa-redo-alt" onclick="refreshCaptcha()"></i>
+                      <input id="captchaText" class="form-control item" type="text" name="captcha" />
+                    </div>
+                </div>
                 <div class="row no-gutters mt-4">
                   <p id="Err" style="color:red"></p>
                 </div>
@@ -83,13 +93,13 @@
             <div class="modal-footer">
               <input type="text" name="idItemComment" id="idItemComment" value="<?php echo $idAsked ?>" hidden>
               <input type="text" name="idCustComment" id="idCustComment" value="<?php echo $_SESSION["idClient"] ?>" hidden>
-                <span id="loadingAnim" style="height:36px;width:50px;margin:0"></span>
+              <span id="loadingAnim" style="height:36px;width:50px;margin:0"></span>
               <button class="btn btn-primary border-0" type="button" style="background-color: rgb(113,195,255);" id="reviewSubmit">Commenter</button>
-
             </div>
           </form>
         </div>
     </div>
 </div>
 </main>
+<script src="mvc/controller/registerCaptchaRefresh.js"></script>
 </body>
