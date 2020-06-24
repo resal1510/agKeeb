@@ -4,5 +4,4 @@ include "mvc/controller/checkRememberMe.php";
 include "mvc/view/mainHeader.html";
 include "mvc/controller/navbarInclude.php";
 include "mvc/view/viewIndex.php";
-include "mvc/view/footer.html";
 ?>
