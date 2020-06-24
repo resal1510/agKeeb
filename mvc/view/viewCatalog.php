@@ -2,7 +2,13 @@
   <section class="clean-block clean-catalog dark">
     <div class="container">
       <div class="block-heading">
-        <h2 class="text-info"><?php echo $categoryListNumbers[$whatCategory]; ?></h2>
+        <h2 class="text-info"><?php
+        if ($whatCategory == 8) {
+          echo $categoryListNumbers[$whatCategory].' '.$_GET['search'];
+        } else {
+          echo $categoryListNumbers[$whatCategory];
+        }
+        ?></h2>
       </div>
 
       <div class="content">
@@ -11,24 +17,13 @@
             <div class="d-none d-md-block">
               <div class="filters">
                 <div class="filter-item">
-                  <h4 style="font-size: 20px" class="mb-3">Filtrer par:</h4><select class="custom-select">
-                    <option value="1" selected>Ordre alphabétique</option>
-                    <option value="2">Prix ascendant</option>
-                    <option value="3">Prix descendant</option>
+                  <h4 style="font-size: 20px" class="mb-3">Filtrer par:</h4>
+                  <select id="catalogOrder" class="custom-select select-Tri">
+                    <option value="1" selected>Par défaut</option>
+                    <option value="2">Ordre alphabétique</option>
+                    <option value="3">Prix ascendant</option>
+                    <option value="4">Prix descendant</option>
                   </select>
-                </div>
-              </div>
-            </div>
-            <div class="d-md-none filter-collapse border-0">
-              <div class="collapse show" id="filters">
-                <div class="filters p-2">
-                  <div class="filter-item">
-                    <h4 style="font-size: 20px" class="mb-3">Filtrer par:</h4><select class="custom-select">
-                      <option value="1" selected>Ordre alphabétique</option>
-                      <option value="2">Prix ascendant</option>
-                      <option value="3">Prix descendant</option>
-                    </select>
-                  </div>
                 </div>
               </div>
             </div>
@@ -45,3 +40,47 @@
     </div>
   </section>
 </main>
+<script type="text/javascript">
+$('.select-Tri').change(function(){
+  var actualVal = $('.select-Tri').val();
+
+  $.ajax({
+    url: 'mvc/controller/catalogPageScriptListing.php',
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      order: actualVal
+    }
+  })
+});
+
+
+/*
+
+$('.select-Tri').change(function(){
+    var tempurl = "https://sandbox.allanresin.ch/agkeeb/catalog.php";
+    var url = window.location.href;
+
+    if (url.endsWith("order=1") || url.endsWith("order=2") || url.endsWith("order=3") || url.endsWith("order=4")) {
+      url = url.slice(0, -7);
+      console.log("oui");
+      console.log("slice : "+url);
+    }
+
+    if (window.location.href == tempurl) {
+       url = tempurl+"?";
+    } else {
+       url = window.location.href+"&";
+    }
+    console.log(url);
+
+
+
+    if($("#catalogOrder").val()!='Select')
+      url+='order='+encodeURIComponent($("#catalogOrder").val());
+
+    url = url.replace(/\&$/,'');
+    window.location.href=url;
+    });
+    */
+</script>

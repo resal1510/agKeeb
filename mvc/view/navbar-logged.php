@@ -13,9 +13,13 @@
             </div>
           </li>
         </ul>
-        <form class="form-inline mr-auto" target="_self">
-          <div class="form-group" style="padding-left: 21px;"><label for="search-field"><i class="fa fa-search"></i></label><input class="form-control search-field" id="search-field" type="search" name="search"></div>
-        </form><span class="navbar-text"> <a href="shoppingCart.php" style="padding: 0px;width: 0px;margin: 27px;"><i class="fas fa-shopping-cart" style="margin-right:10px;" color="#000000"></i>Panier</a></span>
+        <form class="form-inline mr-auto" target="_self" action="catalog.php">
+          <div class="form-group" style="padding-left: 21px;">
+            <label for="search-field"><i class="fa fa-search"></i></label>
+            <input placeholder="Rechercher ..." class="form-control search-field" id="search-field" type="search" name="search">
+          </div>
+        </form>
+        <span class="navbar-text"> <a href="shoppingCart.php" style="padding: 0px;width: 0px;margin: 27px;"><i class="fas fa-shopping-cart" style="margin-right:10px;" color="#000000"></i>Panier</a></span>
         <ul class="nav navbar-nav">
           <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="margin: 0px;padding: 8px;">Mon compte</a>
             <div class="dropdown-menu" role="menu">

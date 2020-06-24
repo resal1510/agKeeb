@@ -1,9 +1,13 @@
 <?php
-include "/var/www/allanresin2.tk/html/agkeeb/mvc/controller/config.php";
+function getQueryLisst()
+{
+  $sql = 'SELECT * FROM Images INNER JOIN Articles ON Images.article = Articles.id_article'.$dynOrder;
+  $sth = $pdo->prepare($sql);
+  $sth->execute();
+  $rListCatalog = $sth->fetchAll(\PDO::FETCH_ASSOC);
 
-$sth = $pdo->prepare("SELECT * FROM `Images` INNER JOIN Articles ON Images.article = Articles.id_article");
-$sth->execute();
-$rListCatalog = $sth->fetchAll(\PDO::FETCH_ASSOC);
+  echo $sql;
+}
 
 $nom = "nom_article";
 $id = "id_article";

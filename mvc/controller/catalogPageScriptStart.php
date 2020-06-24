@@ -1,12 +1,16 @@
 <?php
 session_start ();
 
-$whatCategory = "";
-$categoryListNumbers = ["Tous les articles", "Plaques", "Circuits imprimés", "Interrupteurs", "Touches", "Câbles", "Stabilisateurs", "Boîtiers"];
+$GLOBALS['$whatCategory'] = "";
+$categoryListNumbers = ["Tous les articles", "Plaques", "Circuits imprimés", "Interrupteurs", "Touches", "Câbles", "Stabilisateurs", "Boîtiers", 'Recherche :'];
 
 if (isset($_GET["cat"])) {
-  $whatCategory = trim($_GET["cat"]);
+  $GLOBALS['$whatCategory'] = trim($_GET["cat"]);
 } else {
-  $whatCategory = 0;
+  $GLOBALS['$whatCategory'] = 0;
+}
+
+if (isset($_GET["search"])) {
+  $GLOBALS['$whatCategory'] = 8;
 }
  ?>
