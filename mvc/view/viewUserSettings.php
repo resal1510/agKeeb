@@ -29,7 +29,7 @@
             </div>
             <div class="row no-gutters marginCustomAdresses">
               <div class="col-4 d-xl-flex align-items-xl-center"><span>Téléphone:</span></div>
-              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editPhone" name="phoneAddr"></div>
+              <div class="col"><input type="number" placeholder="ex. 0791234567" min="0200000000" max="0799999999" class="form-control-sm champCustom pl-2" id="editPhone" name="phoneAddr"></div>
             </div>
             <div class="row no-gutters marginCustomAdresses">
               <div class="col-4"><span>Par défaut?</span></div>
@@ -77,7 +77,7 @@
             </div>
             <div class="row no-gutters marginCustomAdresses">
               <div class="col-4 d-xl-flex align-items-xl-center"><span>Téléphone:</span></div>
-              <div class="col"><input type="text" class="form-control-sm champCustom" id="shipPhone" name="newPhone"></div>
+              <div class="col"><input type="number" placeholder="ex. 0791234567" min="0200000000" max="0799999999" class="form-control-sm champCustom" id="shipPhone" name="newPhone"></div>
             </div>
             <div class="row no-gutters marginCustomAdresses">
               <div class="col-4"><span>Par défaut?</span></div>
@@ -142,21 +142,35 @@
             <div style="color:green; font-weight: bold">
               <?php if (!empty($newPwd_success)) {echo $newPwd_success;} ?>
             </div>
-            <input type="what" name="" value="changepwd" hidden>
+            <input type="text" name="what" value="changepwd" hidden>
             <div class="row mb-5">
               <div class="col"><button class="btn btn-primary border-0 borderCustom" type="submit" style="background-color: rgb(113,195,255);">Valider</button></div>
             </div>
+            </form>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="keepScrollPos()">
             <h4 class="mb-4">Désactiver mon compte:</h4>
+            <p style="font-size: 15px;">Une fois votre compte désactivé, vous ne pourrez plus vous connecter à agKeeb. Prière de garder le lien de réactivation qui vous sera fourni au cas où vous aimeriez réactiver votre compte dans le futur.</p>
+            <p style="font-size: 15px;" class="mb-4">Attention: votre mot de passe ainsi que votre adresse e-mail vous seront demandés lors de la réactivation du compte. Ne les perdez donc pas!</p>
             <div class="row no-gutters mb-3">
                 <div class="col-3"><span>Mot de passe:</span></div>
-                <div class="col"><input class="form-control-sm champCustom ml-2" type="password"></div>
-            </div><button class="btn btn-danger border-0" type="button" data-dismiss="modal" style="background-color: rgb(248,77,77);">Désactiver</button></div>
-          </form>
+                <div class="col"><input class="form-control-sm champCustom ml-2" type="password" name="passwdDisable"></div>
+            </div>
+            <div style="color:red; font-weight: bold">
+              <?php if (!empty($actualPasswdErr)) {echo $actualPasswdErr;}
+              if (!empty($errDis2)) {echo $errDis2;} ?>
+            </div>
+            <div>
+              <?php if (!empty($confirmDisable)) {echo $confirmDisable;} ?>
+            </div>
+            <input type="text" name="what" value="disableAcc" hidden>
+            <button class="btn btn-danger border-0" type="submit" data-dismiss="modal" style="background-color: rgb(248,77,77);">Désactiver</button>
+          </div>
+        </form>
         </div>
       </div>
     </section>
   </main>
 </body>
 <script src="mvc/controller/userSettingsJS.js"></script>
-
+<script src="mvc/controller/generalKeepScrollPos.js"></script>
 </html>
