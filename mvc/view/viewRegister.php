@@ -23,7 +23,7 @@
                   <label for="password">Merci de rentrer le CAPTCHA.&nbsp;</label>
                   <img id="captchaStyle" src="mvc/controller/captchaGenerator.php" /><i id="refreshCaptcha" class="fas fa-redo-alt" onclick="refreshCaptcha()"></i>
                   <input class="form-control item" type="text" name="captcha" />
-                  <span class="help-block"><?php echo $captcha_err; ?></span>
+                  <span class="help-block"><?php echo $_SESSION["code"]; ?></span>
                 </div>
                 <button class="btn btn-primary btn-block shadow-sm border-0" type="submit" value="submit" style="background-color: #71c3ff;">S'inscrire</button>
               </form>

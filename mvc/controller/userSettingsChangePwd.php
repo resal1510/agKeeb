@@ -1,10 +1,8 @@
 <?php
     if (empty(trim($_POST["oldPwd"]))) {
         $oldPwd_err = "Merci d'insérer votre mot de passe actuel";
-        echo "fdp";
     } else {
         $oldPwd = trim($_POST["oldPwd"]);
-        echo "string";
     }
 
     if (empty(trim($_POST["newPwd"]))) {

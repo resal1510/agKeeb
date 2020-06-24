@@ -1,5 +1,5 @@
 <?php
-$oldPwd_err = $newPwd_err = $confirmPwd_err = $samePwd_err = $newPwd_success = $newPwd2_err = $pwdChange_err = "";
+$oldPwd_err = $newPwd_err = $confirmPwd_err = $samePwd_err = $newPwd_success = $newPwd2_err = $pwdChange_err = $actualPasswdErr = $confirmDisable = $errDis2 = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   switch ($_POST["what"]) {
     case 'changepwd':
@@ -13,6 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       break;
     case 'delAddr':
       include "mvc/controller/userSettingsDeleteAddr.php";
+      break;
+    case 'disableAcc':
+      include "mvc/controller/userSettingsDisableAccount.php";
       break;
   }
 }

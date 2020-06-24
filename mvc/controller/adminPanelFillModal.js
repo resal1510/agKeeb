@@ -1,5 +1,16 @@
+$( document ).ready(function() {
+  $( ".Item" ).on( "click", function() {
+    console.log("fdppppppp");
+  });
+});
+
+
 //To fill items modal
+console.log("okokok");
+$( document ).ready(function() {
+console.log("oui");
 $(".Item").on("click", function() {
+  console.log("ok");
   //Take the ID of the address and send it w/ ajax
   var tmpid = $(this).attr("id").replace(/\D/g,'');
 
@@ -101,4 +112,5 @@ $(".Comment").on("click", function() {
       $('#nameComment').val(data.pseudo);
     }
   });
+});
 });
