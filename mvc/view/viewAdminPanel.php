@@ -239,7 +239,149 @@
     </section>
   </main>
 
-
+  <div class="modal fade" role="dialog" tabindex="-1" id="Orders">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Commande - #<span id="orderIdTitle"></span></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="keepScrollPos()">
+          <div class="row no-gutters marginCustomAdresses">
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Identifiant:</span></div>
+            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="idOrder" id="idOrder"></div>
+          </div>
+          <div class="row no-gutters marginCustomAdresses">
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Client:</span></div>
+            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="accountOrder" id="accountOrder"></div>
+          </div>
+          <div class="row no-gutters marginCustomAdresses">
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Date de création:</span></div>
+            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="dateOrder" id="dateOrder"></div>
+          </div>
+          <div class="row no-gutters marginCustomAdresses">
+            <div class="col-4 d-xl-flex align-items-xl-start"><span>Contenu:</span></div>
+            <div class="col ml-2" id="ordersFillContent">
+            </div>
+          </div>
+          <div class="row no-gutters marginCustomAdresses">
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Montant:</span></div>
+            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="priceOrder" id="priceOrder"></div>
+          </div>
+          <div class="row no-gutters marginCustomAdresses">
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>État:<br></span></div>
+            <div class="col-auto d-xl-flex align-items-xl-center ml-2"><select class="custom-select custom-select-sm" name="stateOrder" id="stateOrder">
+                <?php include "mvc/controller/adminPanelSelectOrderState.php" ?>
+              </select></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="text" name="doWhat" value="editOrders" hidden>
+          <button class="btn btn-primary border-0" type="submit" style="background-color: rgb(113,195,255);">Sauvegarder</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" role="dialog" tabindex="-1" id="Comment">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Commentaire - #<span id="noteIdTitle"></span></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="keepScrollPos()">
+          <div class="row no-gutters marginCustomAdresses">
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Identifiant:</span></div>
+            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="idComment" id="idComment"></div>
+          </div>
+          <div class="row no-gutters marginCustomAdresses">
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Pseudo:</span></div>
+            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="nameComment" id="nameComment"></div>
+          </div>
+          <div class="row no-gutters marginCustomAdresses">
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Article:</span></div>
+            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="itemComment" id="itemComment"></div>
+          </div>
+          <div class="row no-gutters marginCustomAdresses">
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Note:</span></div>
+            <div class="col-2 d-xl-flex justify-content-xl-start align-items-xl-center ml-2" id="noteComment">></div>
+          </div>
+          <div class="row no-gutters marginCustomAdresses">
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Commentaire:</span></div>
+            <div class="col ml-2"><textarea class="champCustom pl-2 pt-1" style="font-size: 14px;" name="commentComment" id="commentComment" readonly></textarea></div>
+          </div>
+          <div class="row no-gutters marginCustomAdresses">
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Client:</span></div>
+            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="accountComment" id="accountComment"></div>
+          </div>
+          <div class="row no-gutters marginCustomAdresses">
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Date de création:</span></div>
+            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="dateComment" id="dateComment"></div>
+          </div>
+          <div class="row no-gutters marginCustomAdresses">
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>État:</span></div>
+            <div class="col-auto d-xl-flex align-items-xl-center ml-2"><select class="custom-select custom-select-sm" name="stateComment" id="stateComment">
+                <option value="true">Activé</option>
+                <option value="false">Désactivé</option>
+              </select></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="text" name="doWhat" value="editComments" hidden>
+          <button class="btn btn-primary border-0" type="submit" style="background-color: rgb(113,195,255);">Sauvegarder</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" role="dialog" tabindex="-1" id="EditAdmin">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="titleAddressModifAdmin"></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="editFormAdmin" onsubmit="keepScrollPos()">
+          <div class="modal-body">
+            <div class="row no-gutters marginCustomAdresses">
+              <div class="col-4 d-xl-flex align-items-xl-center"><span>Prénom:</span></div>
+              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editNameAdmin" name="nameAddrAdmin"></div>
+            </div>
+            <div class="row no-gutters marginCustomAdresses">
+              <div class="col-4 d-xl-flex align-items-xl-center"><span>Nom:</span></div>
+              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editSurnameAdmin" name="surnameAddrAdmin"></div>
+            </div>
+            <div class="row no-gutters marginCustomAdresses">
+              <div class="col-4 d-xl-flex align-items-xl-center"><span>Rue et numéro:</span></div>
+              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editAddrAdmin" name="addressAddrAdmin"></div>
+            </div>
+            <div class="row no-gutters marginCustomAdresses">
+              <div class="col-4 d-xl-flex align-items-xl-center"><span>Code postal:</span></div>
+              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editNpaAdmin" name="npaAddrAdmin"></div>
+            </div>
+            <div class="row no-gutters marginCustomAdresses">
+              <div class="col-4 d-xl-flex align-items-xl-center"><span>Ville:</span></div>
+              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editCityAdmin" name="cityAddrAdmin"></div>
+            </div>
+            <div class="row no-gutters marginCustomAdresses">
+              <div class="col-4 d-xl-flex align-items-xl-center"><span>Téléphone:</span></div>
+              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editPhoneAdmin" name="phoneAddrAdmin"></div>
+            </div>
+            <div class="row no-gutters marginCustomAdresses">
+              <div class="col-4"><span>Par défaut?</span></div>
+              <div class="col"><input type="checkbox" style="font-size: 14px;" id="editDefaultAdmin" name="newDefaultAdmin"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="text" name="what" value="modifyAddrAdmin" id="whatInputAdmin" hidden>
+            <input type="text" name="idAddrAdmin" id="idAddrAdmin" hidden>
+            <button class="btn btn-danger border-0" type="submit" id="deleteAddrAdmin" style="background-color: rgb(248,77,77);">Supprimer</button>
+            <button class="btn btn-primary border-0" type="submit" style="background-color: rgb(113,195,255);">Sauvegarder</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   <div class="modal fade" role="dialog" tabindex="-1" id="Item">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -342,105 +484,25 @@
             <div class="col-4 d-xl-flex align-items-xl-center"><span>Dernière IP:</span></div>
             <div class="col ml-2"><input type="text" class="form-control-sm champCustom" readonly name="ipAccount" id="ipAccount" /></div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <input type="text" name="doWhat" value="editCustomer" hidden>
-          <button class="btn btn-primary border-0" type="submit" style="background-color: rgb(113,195,255);">Sauvegarder</button>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" role="dialog" tabindex="-1" id="Order">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Commande - #<span id="orderIdTitle"></span></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        </div>
-        <div class="modal-body">
-          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="keepScrollPos()">
           <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4 d-xl-flex align-items-xl-center"><span>Identifiant:</span></div>
-            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="idOrder" id="idOrder"></div>
-          </div>
-          <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4 d-xl-flex align-items-xl-center"><span>Client:</span></div>
-            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="accountOrder" id="accountOrder"></div>
-          </div>
-          <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4 d-xl-flex align-items-xl-center"><span>Date de création:</span></div>
-            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="dateOrder" id="dateOrder"></div>
-          </div>
-          <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4 d-xl-flex align-items-xl-start"><span>Contenu:</span></div>
-            <div class="col ml-2" id="ordersFillContent">
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Adresses de livraison:<br></span></div>
+            <div>
+              <div class="row no-gutters">
+                <?php include "mvc/controller/settingsListAddr.php"; ?>
+              </div>
             </div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4 d-xl-flex align-items-xl-center"><span>Montant:</span></div>
-            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="priceOrder" id="priceOrder"></div>
-          </div>
-          <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4 d-xl-flex align-items-xl-center"><span>État:<br></span></div>
-            <div class="col-auto d-xl-flex align-items-xl-center ml-2"><select class="custom-select custom-select-sm" name="stateOrder" id="stateOrder">
-                <?php include "mvc/controller/adminPanelSelectOrderState.php" ?>
-              </select></div>
+            <div class="col-4 d-xl-flex align-items-xl-center"><span>Adresses de facturation:<br></span></div>
+            <div>
+              <div class="row no-gutters">
+                <?php include "mvc/controller/settingsListAddr2.php"; ?>
+              </div>
+            </div>
           </div>
         </div>
         <div class="modal-footer">
-          <input type="text" name="doWhat" value="editOrders" hidden>
-          <button class="btn btn-primary border-0" type="submit" style="background-color: rgb(113,195,255);">Sauvegarder</button>
-        </div>
-      </form>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" role="dialog" tabindex="-1" id="Comment">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Commentaire - #<span id="noteIdTitle"></span></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        </div>
-        <div class="modal-body">
-          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" onsubmit="keepScrollPos()">
-          <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4 d-xl-flex align-items-xl-center"><span>Identifiant:</span></div>
-            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="idComment" id="idComment"></div>
-          </div>
-          <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4 d-xl-flex align-items-xl-center"><span>Pseudo:</span></div>
-            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="nameComment" id="nameComment"></div>
-          </div>
-          <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4 d-xl-flex align-items-xl-center"><span>Article:</span></div>
-            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="itemComment" id="itemComment"></div>
-          </div>
-          <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4 d-xl-flex align-items-xl-center"><span>Note:</span></div>
-            <div class="col-2 d-xl-flex justify-content-xl-start align-items-xl-center ml-2" id="noteComment">></div>
-          </div>
-          <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4 d-xl-flex align-items-xl-center"><span>Commentaire:</span></div>
-            <div class="col ml-2"><textarea class="champCustom pl-2 pt-1" style="font-size: 14px;" name="commentComment" id="commentComment" readonly></textarea></div>
-          </div>
-          <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4 d-xl-flex align-items-xl-center"><span>Client:</span></div>
-            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="accountComment" id="accountComment"></div>
-          </div>
-          <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4 d-xl-flex align-items-xl-center"><span>Date de création:</span></div>
-            <div class="col ml-2"><input class="form-control-sm champCustom" type="text" readonly="" name="dateComment" id="dateComment"></div>
-          </div>
-          <div class="row no-gutters marginCustomAdresses">
-            <div class="col-4 d-xl-flex align-items-xl-center"><span>État:</span></div>
-            <div class="col-auto d-xl-flex align-items-xl-center ml-2"><select class="custom-select custom-select-sm" name="stateComment" id="stateComment">
-                <option value="true">Activé</option>
-                <option value="false">Désactivé</option>
-              </select></div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <input type="text" name="doWhat" value="editComments" hidden>
+          <input type="text" name="doWhat" value="editCustomer" hidden>
           <button class="btn btn-primary border-0" type="submit" style="background-color: rgb(113,195,255);">Sauvegarder</button>
         </div>
       </form>

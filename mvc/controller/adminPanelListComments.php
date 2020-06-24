@@ -13,7 +13,7 @@ $stars = "note";
 foreach ($resultComments as $data) {
 
   $dateTmpCom = date_create($data[$fCommDate]);
-  $tmpDateFormatCom = date_format($dateTmp, 'd.m.Y');
+  $tmpDateFormatCom = date_format($dateTmpCom, 'd.m.Y');
 
   $idItemG = $data[$fCommId];
   include '/var/www/allanresin2.tk/html/agkeeb/mvc/model/adminPanelCommentReviewSQL.php';
