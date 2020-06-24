@@ -1,3 +1,8 @@
+/* PRODUCT PAGE VIEW PAGE */
+.rStars {
+  cursor: pointer;
+}
+
 /* USER SETTINGS VIEW PAGE */
 .shipLink {
   color: #007bff !important;
@@ -33,9 +38,6 @@
   width: 250px;
   word-wrap: break-word;
 }
-
-
-
 
 .shadow-drop-2-center {
   -webkit-animation: shadow-drop-2-center .150s cubic-bezier(.25, .46, .45, .94) both;
