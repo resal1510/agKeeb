@@ -60,6 +60,18 @@ $(".Account").on("click", function() {
       $('#adminAccount').val(data.admin);
       $('#stateAccount').val(data.active);
       $('#ipAccount').val(data.ip);
+      if (data.addrL) {
+        $('#listAddrL').html(data.addrL);
+      } else {
+        $('#listAddrL').html('<p style="color:red">Ce client n\'a pas d\'adresses de livraison</p>');
+      }
+
+      if (data.addrF) {
+        $('#listAddrF').html(data.addrF);
+      } else {
+        $('#listAddrF').html('<p style="color:red">Ce client n\'a pas d\'adresses de facturation</p>');
+      }
+
     }
   });
 });

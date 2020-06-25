@@ -335,53 +335,7 @@
       </div>
     </div>
   </div>
-  <div class="modal fade" role="dialog" tabindex="-1" id="EditAdmin">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="titleAddressModifAdmin"></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        </div>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="editFormAdmin" onsubmit="keepScrollPos()">
-          <div class="modal-body">
-            <div class="row no-gutters marginCustomAdresses">
-              <div class="col-4 d-xl-flex align-items-xl-center"><span>Prénom:</span></div>
-              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editNameAdmin" name="nameAddrAdmin"></div>
-            </div>
-            <div class="row no-gutters marginCustomAdresses">
-              <div class="col-4 d-xl-flex align-items-xl-center"><span>Nom:</span></div>
-              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editSurnameAdmin" name="surnameAddrAdmin"></div>
-            </div>
-            <div class="row no-gutters marginCustomAdresses">
-              <div class="col-4 d-xl-flex align-items-xl-center"><span>Rue et numéro:</span></div>
-              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editAddrAdmin" name="addressAddrAdmin"></div>
-            </div>
-            <div class="row no-gutters marginCustomAdresses">
-              <div class="col-4 d-xl-flex align-items-xl-center"><span>Code postal:</span></div>
-              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editNpaAdmin" name="npaAddrAdmin"></div>
-            </div>
-            <div class="row no-gutters marginCustomAdresses">
-              <div class="col-4 d-xl-flex align-items-xl-center"><span>Ville:</span></div>
-              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editCityAdmin" name="cityAddrAdmin"></div>
-            </div>
-            <div class="row no-gutters marginCustomAdresses">
-              <div class="col-4 d-xl-flex align-items-xl-center"><span>Téléphone:</span></div>
-              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editPhoneAdmin" name="phoneAddrAdmin"></div>
-            </div>
-            <div class="row no-gutters marginCustomAdresses">
-              <div class="col-4"><span>Par défaut?</span></div>
-              <div class="col"><input type="checkbox" style="font-size: 14px;" id="editDefaultAdmin" name="newDefaultAdmin"></div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <input type="text" name="what" value="modifyAddrAdmin" id="whatInputAdmin" hidden>
-            <input type="text" name="idAddrAdmin" id="idAddrAdmin" hidden>
-            <button class="btn btn-danger border-0" type="submit" id="deleteAddrAdmin" style="background-color: rgb(248,77,77);">Supprimer</button>
-            <button class="btn btn-primary border-0" type="submit" style="background-color: rgb(113,195,255);">Sauvegarder</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+
   <div class="modal fade" role="dialog" tabindex="-1" id="Item">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -487,16 +441,16 @@
           <div class="row no-gutters marginCustomAdresses">
             <div class="col-4 d-xl-flex align-items-xl-center"><span>Adresses de livraison:<br></span></div>
             <div>
-              <div class="row no-gutters">
-                <?php include "mvc/controller/settingsListAddr.php"; ?>
+              <div class="row no-gutters" id="listAddrL">
+
               </div>
             </div>
           </div>
           <div class="row no-gutters marginCustomAdresses">
             <div class="col-4 d-xl-flex align-items-xl-center"><span>Adresses de facturation:<br></span></div>
             <div>
-              <div class="row no-gutters">
-                <?php include "mvc/controller/settingsListAddr2.php"; ?>
+              <div class="row no-gutters" id="listAddrF">
+
               </div>
             </div>
           </div>
@@ -506,6 +460,53 @@
           <button class="btn btn-primary border-0" type="submit" style="background-color: rgb(113,195,255);">Sauvegarder</button>
         </div>
       </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" role="dialog" tabindex="-1" id="EditAdmin">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="titleAddressModifAdmin"></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" id="editFormAdmin" onsubmit="keepScrollPos()">
+          <div class="modal-body">
+            <div class="row no-gutters marginCustomAdresses">
+              <div class="col-4 d-xl-flex align-items-xl-center"><span>Prénom:</span></div>
+              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editNameAdmin" name="nameAddrAdmin"></div>
+            </div>
+            <div class="row no-gutters marginCustomAdresses">
+              <div class="col-4 d-xl-flex align-items-xl-center"><span>Nom:</span></div>
+              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editSurnameAdmin" name="surnameAddrAdmin"></div>
+            </div>
+            <div class="row no-gutters marginCustomAdresses">
+              <div class="col-4 d-xl-flex align-items-xl-center"><span>Rue et numéro:</span></div>
+              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editAddrAdmin" name="addressAddrAdmin"></div>
+            </div>
+            <div class="row no-gutters marginCustomAdresses">
+              <div class="col-4 d-xl-flex align-items-xl-center"><span>Code postal:</span></div>
+              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editNpaAdmin" name="npaAddrAdmin"></div>
+            </div>
+            <div class="row no-gutters marginCustomAdresses">
+              <div class="col-4 d-xl-flex align-items-xl-center"><span>Ville:</span></div>
+              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editCityAdmin" name="cityAddrAdmin"></div>
+            </div>
+            <div class="row no-gutters marginCustomAdresses">
+              <div class="col-4 d-xl-flex align-items-xl-center"><span>Téléphone:</span></div>
+              <div class="col"><input type="text" class="form-control-sm champCustom pl-2" id="editPhoneAdmin" name="phoneAddrAdmin"></div>
+            </div>
+            <div class="row no-gutters marginCustomAdresses">
+              <div class="col-4"><span>Par défaut?</span></div>
+              <div class="col"><input type="checkbox" style="font-size: 14px;" id="editDefaultAdmin" name="newDefaultAdmin"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <input type="text" name="what" value="modifyAddrAdmin" id="whatInputAdmin" hidden>
+            <input type="text" name="idAddrAdmin" id="idAddrAdmin" hidden>
+            <button class="btn btn-danger border-0" type="submit" id="deleteAddrAdmin" style="background-color: rgb(248,77,77);">Supprimer</button>
+            <button class="btn btn-primary border-0" type="submit" style="background-color: rgb(113,195,255);">Sauvegarder</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
