@@ -3,10 +3,8 @@ $searchTerm = $dynOrder = $rListCatalog = $resultSearch = $resultList = "";
 
 if (isset($_POST['order'])) {
   $_SESSION['orderby'] = $_POST['order'];
-  echo "string";
 } else {
   $_SESSION['orderby'] = 'def';
-  echo "bite";
 }
 
 function getQueryList($a, $check, $s)
@@ -145,10 +143,8 @@ function getQueryList($a, $check, $s)
         break;
       default:
         getQueryList("", $checkSearch, $searchTerm);
-        echo "defaut";
         break;
     }
 
-echo $_SESSION['orderby'];
 return true;
  ?>
