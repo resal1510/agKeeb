@@ -3,10 +3,10 @@
     <div class="container">
       <div class="block-heading">
         <h2 class="text-info"><?php
-        if ($whatCategory == 8) {
-          echo $categoryListNumbers[$whatCategory].' '.$_GET['search'];
+        if ($GLOBALS['$whatCategory'] == 8) {
+          echo $categoryListNumbers[$GLOBALS['$whatCategory']].' '.$_GET['search'];
         } else {
-          echo $categoryListNumbers[$whatCategory];
+          echo $categoryListNumbers[$GLOBALS['$whatCategory']];
         }
         ?></h2>
       </div>
