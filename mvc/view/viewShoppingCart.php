@@ -15,7 +15,7 @@
             <div class="summary">
               <h3>Résumé</h3>
               <h4><span class="text">Sous-total</span><span class="price">CHF <span id="subtotal"></span></span></h4>
-              <h4><span class="text">Frais d'expédition</span><span class="price">CHF 8</span></h4>
+              <h4><span class="text">Frais d'expédition</span><span class="price">CHF <span id="expPrice">8</span></span></h4>
               <h4>
                 <span class="text">Total</span>
                 <span class="price">CHF <span id="totaloftotal"></span></span>

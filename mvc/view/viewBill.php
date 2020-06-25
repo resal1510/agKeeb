@@ -20,7 +20,7 @@
         <div class="p-3 mt-4 border">
             <div class="row mb-2">
                 <div class="col" style="font-size: 14px;color: rgb(108,117,125);"><span>Frais d'éxpedition</span></div>
-                <div class="col d-md-flex justify-content-md-end" style="font-size: 14px;color: rgb(108,117,125);"><span>CHF 8</span></div>
+                <div class="col d-md-flex justify-content-md-end" style="font-size: 14px;color: rgb(108,117,125);"><span>CHF <span id="expPriceBill"></span></span></div>
             </div>
             <div class="row">
                 <div class="col" style="font-size: 20px;"><span><strong>Total:</strong></span></div>

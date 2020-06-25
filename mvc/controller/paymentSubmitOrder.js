@@ -9,7 +9,7 @@ function submitOrder() {
   addressPay = addressTmp2.replace(/\D/g,'');
 
   //Take total price
-  totalPrice = $('#totalPrice').html();
+  totalPrice = parseInt($('#totalPrice').html());
 
   //AJAX Call to the php file that create the final order into the db
   $.ajax({

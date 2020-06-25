@@ -1,7 +1,13 @@
 $(document).ready(function() {
-  var sum = 8;
+  var total = 0;
     $(".itemPriceT").each(function(){
-        sum += +$(this).html();
+        total += +$(this).html();
     });
-    $(".totalPrice").html(sum);
+    $(".totalPrice").html(total.toFixed(2));
+
+    if (total > 100) {
+      $("#expPriceBill").html(0);
+    } else {
+      $("#expPriceBill").html(8);
+    }
 });
