@@ -1,6 +1,7 @@
 var tempInt;
 var numberProduct;
 var arrayPrice = [];
+var sumTotal;
 //Update prices in real time while modifying the number of items
 $(document).ready(function(){
   $(".quantity-input").on("input", function(){
@@ -35,15 +36,20 @@ $(document).ready(function(){
         tmpPrice = (Math.round(tmpPrice * 100) / 100).toFixed(2);
         arrayPrice.push(tmpPrice);
     }
-
     //Add all items that is in the shopping cart
-    var sumTotal = arrayPrice.reduce(function(a, b){
+    sumTotal = arrayPrice.reduce(function(a, b){
         return parseFloat(a) + parseFloat(b);
     }, 0);
 
     //Set totals for shopping cart page
-    $("#subtotal").text(parseFloat(sumTotal));
-    $("#totaloftotal").text(parseFloat(sumTotal) + 8);
+    $("#subtotal").text(parseFloat(sumTotal.toFixed(2)));
+    if (sumTotal > 100) {
+      $("#totaloftotal").text(parseFloat(sumTotal.toFixed(2)));
+      $("#expPrice").text(0);
+    } else {
+      $("#totaloftotal").text(parseFloat(sumTotal.toFixed(2)) + 8);
+      $("#expPrice").text(8);
+    }
 
     //Update in real time the cart
     var realId = $(productId).val()
@@ -68,8 +74,16 @@ $(document).ready(function(){
       return parseFloat(a) + parseFloat(b);
   }, 0);
 
-  $("#subtotal").text(parseFloat(sumTotal));
-  $("#totaloftotal").text(sumTotal + 8);
+
+  if (sumTotal > 100) {
+    $("#totaloftotal").text(parseFloat(sumTotal.toFixed(2)));
+    $("#subtotal").text(parseFloat(sumTotal.toFixed(2)));
+    $("#expPrice").text(0);
+  } else {
+    $("#totaloftotal").text(parseFloat(sumTotal.toFixed(2)) + 8);
+    $("#subtotal").text(parseFloat(sumTotal.toFixed(2)));
+    $("#expPrice").text(8);
+  }
 });
 
 $(document).ready(function(){
@@ -95,3 +109,22 @@ $(document).ready(function(){
     window.location.href = "payment.php";
   });
 });
+
+$(document).ready(function(){
+  $('.quantity-input').on('input', function() {
+    liveUpdateCart();
+  });
+});
+
+function liveUpdateCart() {
+  var allVal;
+  var tmpAllVal = [];
+
+  var inputs = $(".quantity-input");
+  for(var i = 0; i < inputs.length; i++){
+      tmpAllVal.push(parseInt($(inputs[i]).val()));
+  }
+
+  allVal = tmpAllVal.reduce((a, b) => a + b);
+  $('#allCartItemVal').html(allVal);
+}

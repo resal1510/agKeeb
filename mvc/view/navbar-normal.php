@@ -1,3 +1,4 @@
+<?php include "mvc/controller/shoppingCartNumberItems.php"; ?>
 <body>
   <div class="spacer" style="margin-bottom: 72px"></div>
   <nav class="navbar navbar-light navbar-expand-lg text-muted shadow-sm navigation-clean-search fixed-top" style="background-color: #FFFFFF;padding-left: 100px;padding-right: 100px;">
@@ -16,7 +17,13 @@
         <form class="form-inline mr-auto" target="_self" action="catalog.php">
           <div class="form-group" style="padding-left: 21px;"><label for="search-field"><i class="fa fa-search"></i></label><input placeholder="Rechercher ..." class="form-control search-field" id="search-field" type="search" name="search"></div>
         </form>
-        <span class="navbar-text"><a href="shoppingCart.php" style="padding: 0px;width: 0px;margin: 27px;"><i class="fas fa-shopping-cart" style="margin-right:10px;" color="#000000"></i>Panier</a></span>
+        <span class="navbar-text">
+          <a href="shoppingCart.php">
+            <span class="fa-layers fa-fw fa-2x" style="margin-right:7px">
+                <i class="fas fa-shopping-cart" style="font-size: 16px" color="#000000"></i>
+                <span class="fa-layers-counter" style="background: Tomato" id="allCartItemVal" color="#000000"><?php echo $i; ?></span></a>
+            </span><a href="shoppingCart.php" style="margin-right: 27px; color: #465765;">Panier</a>
+          </span>
         <?php include "mvc/controller/navbarNScript.php" ?>
       </div>
     </div>
