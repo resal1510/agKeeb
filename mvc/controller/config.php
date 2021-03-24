@@ -1,9 +1,9 @@
 <?php
 //Parameters for the SQL server and connection
 define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'pqqa_agkeebmgmt');
-define('DB_PASSWORD', 'YWs-UmL4jSAh');
-define('DB_NAME', 'pqqa_agkeeb');
+define('DB_USERNAME', '');
+define('DB_PASSWORD', '');
+define('DB_NAME', '');
 
 // Connection test to see if it's working fine
 try{
